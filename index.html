@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- Calendly -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+
   <style>
     :root {
       --green: #0b211b;
@@ -528,101 +531,56 @@
       display: none !important;
     }
 
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    /* التقويم الحقيقي (Calendly) */
+    .booking-wrap .btn-outline {
+      color: #85672e;
     }
 
-    .calendar-box,
-    .slots-box {
-      padding: 18px;
+    .calendar-loading {
+      padding: 28px 10px;
+      text-align: center;
+      color: #66736b;
+    }
+
+    .booking-wrap .calendly-inline-widget {
+      width: 100%;
+      min-width: 0;
+      height: 700px;
       border: 1px solid #e5d9bd;
       border-radius: 14px;
-      background: #fbfaf6;
+      overflow: hidden;
+      background: #fff;
     }
 
-    .calendar-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .calendar-heading button {
-      padding: 5px 12px;
-      border: 1px solid #d8b56d;
-      border-radius: 8px;
-      background: white;
-      color: #17251d;
-    }
-
-    .weekdays,
-    .days {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 5px;
-      text-align: center;
-    }
-
-    .weekdays {
-      margin-bottom: 8px;
-      color: #66736b;
-      font-size: 12px;
-    }
-
-    .day {
-      min-height: 38px;
-      border: 1px solid transparent;
-      border-radius: 8px;
-      background: transparent;
-      color: #17251d;
-    }
-
-    .day:disabled {
-      opacity: .25;
-      cursor: not-allowed;
-    }
-
-    .day:not(:disabled):hover {
-      border-color: #b18b45;
-    }
-
-    .day.selected,
-    .slot.selected {
-      background: var(--gold);
-      color: #17251d;
-      font-weight: 800;
-    }
-
-    .slots {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
+    .calendar-fallback {
       margin-top: 12px;
+      color: #66736b;
+      font-size: 13px;
     }
 
-    .slot {
-      padding: 11px 8px;
-      border: 1px solid #e5d9bd;
-      border-radius: 9px;
-      background: white;
+    .calendar-fallback a {
+      color: #85672e;
+      text-decoration: underline;
+    }
+
+    .booked {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid #d8b56d;
+      border-radius: 12px;
+      background: #f6f0e4;
       color: #17251d;
     }
 
-    .slot:disabled {
-      opacity: .35;
-      cursor: not-allowed;
+    .booked strong {
+      display: block;
+      font-size: 18px;
     }
 
-    .booking-notice {
-      margin-top: 18px;
-      padding: 12px;
-      border-radius: 10px;
-      background: #f6f0e4;
-      color: #66563a;
-      font-size: 13px;
+    .booked p {
+      margin-top: 4px;
+      color: #5b5139;
+      font-size: 14px;
     }
 
     footer {
@@ -794,8 +752,7 @@
 
       .grid,
       .steps,
-      .form-grid,
-      .calendar-grid {
+      .form-grid {
         grid-template-columns: 1fr;
       }
 
@@ -823,6 +780,10 @@
 
       .booking-wrap {
         padding: 20px;
+      }
+
+      .booking-wrap .calendly-inline-widget {
+        height: 860px;
       }
 
       .video-stage {
@@ -1137,37 +1098,24 @@
               اختر يوماً متاحاً، ثم حدد الوقت المناسب.
             </p>
 
-            <div class="calendar-grid">
-              <div class="calendar-box">
-                <div class="calendar-heading">
-                  <button type="button" id="prevMonth" aria-label="Previous month">‹</button>
-                  <strong id="monthLabel"></strong>
-                  <button type="button" id="nextMonth" aria-label="Next month">›</button>
-                </div>
+            <p id="calendlyLoading" class="calendar-loading" data-i18n="calendarLoading">جارٍ تحميل التقويم…</p>
 
-                <div class="weekdays" id="weekdays"></div>
-                <div class="days" id="days"></div>
-              </div>
+            <!-- تقويم Calendly الحقيقي -->
+            <div id="calendlyBox" class="calendly-inline-widget" data-auto-load="false"></div>
 
-              <div class="slots-box">
-                <strong data-i18n="timesTitle">الأوقات المقترحة</strong>
-                <p id="selectedDateText" class="form-note" data-i18n="chooseDay">
-                  يرجى اختيار يوم من التقويم أولاً.
-                </p>
-                <div class="slots" id="slots"></div>
-              </div>
-            </div>
+            <p class="calendar-fallback">
+              <span data-i18n="calendarFallback">إذا لم يظهر التقويم،</span>
+              <a id="calendlyFallback" href="#" target="_blank" rel="noopener" data-i18n="calendarFallbackLink">افتح صفحة الحجز في نافذة جديدة</a>
+            </p>
 
-            <div class="booking-notice" data-i18n="availabilityNote">
-              الأوقات المعروضة تجريبية. يجب ربط التقويم بخدمة حجز لتأكيد التوفر الفعلي.
+            <div id="bookedBox" class="booked hidden" role="status">
+              <strong data-i18n="bookedTitle">تم تأكيد موعدك ✓</strong>
+              <p data-i18n="bookedText">ستتوصل برسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك في الموعد المحدد.</p>
             </div>
 
             <div class="form-actions">
               <button class="btn btn-outline" type="button" id="backStep" data-i18n="backBtn">
                 → رجوع للمعلومات
-              </button>
-              <button class="btn" type="submit" data-i18n="confirmBtn">
-                تأكيد طلب الاستشارة
               </button>
             </div>
           </div>
@@ -1214,7 +1162,13 @@
 
 <div class="toast hidden" id="toast" role="status"></div>
 
+<!-- Calendly widget script -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <script>
+/* رابط الحجز الخاص بك على Calendly */
+const CALENDLY_URL = "https://calendly.com/-darflow/30min";
+
 const translations = {
   ar: {
     services: "خدماتنا",
@@ -1276,11 +1230,12 @@ const translations = {
     nextBtn: "التالي: اختيار الموعد ←",
     calendarTitle: "اختر الموعد المناسب لك",
     calendarSub: "اختر يوماً متاحاً، ثم حدد الوقت المناسب.",
-    timesTitle: "الأوقات المقترحة",
-    chooseDay: "يرجى اختيار يوم من التقويم أولاً.",
-    availabilityNote: "الأوقات المعروضة تجريبية. يجب ربط التقويم بخدمة حجز لتأكيد التوفر الفعلي.",
+    calendarLoading: "جارٍ تحميل التقويم…",
+    calendarFallback: "إذا لم يظهر التقويم،",
+    calendarFallbackLink: "افتح صفحة الحجز في نافذة جديدة",
+    bookedTitle: "تم تأكيد موعدك ✓",
+    bookedText: "ستتوصل برسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك في الموعد المحدد.",
     backBtn: "→ رجوع للمعلومات",
-    confirmBtn: "تأكيد طلب الاستشارة",
     aboutTitle: "DarFlow — من نحن؟",
     aboutP1: "DarFlow متخصصة في تصميم الأنظمة الذكية للوكالات العقارية في المغرب. نهدف إلى تطوير تجربة العملاء وتحويل الاستفسارات إلى فرص بيع ومعاينات فعلية.",
     aboutP2: "نصمم حلولاً تساعد على الرد الأولي وجمع المعلومات وفرز العملاء وتصنيفهم حسب الجدية، وتنظيم المتابعة والمواعيد.",
@@ -1300,8 +1255,6 @@ const translations = {
     volumeMore: "أكثر من 1000",
     phoneError: "يرجى إدخال رقم واتساب مغربي صحيح.",
     fixFields: "يرجى التحقق من الحقول الإلزامية.",
-    chooseSlot: "يرجى اختيار اليوم والوقت المناسبين.",
-    submitted: "تم التحقق من البيانات في هذا النموذج التجريبي. لتلقي الطلبات فعلياً، يجب ربط النموذج بخدمة إرسال.",
     playLabel: "تشغيل الفيديو",
     closeLabel: "إغلاق"
   },
@@ -1366,11 +1319,12 @@ const translations = {
     nextBtn: "Suivant : choisir un créneau →",
     calendarTitle: "Choisissez votre créneau",
     calendarSub: "Sélectionnez un jour disponible, puis une heure.",
-    timesTitle: "Horaires proposés",
-    chooseDay: "Choisissez d’abord une date.",
-    availabilityNote: "Les horaires sont des exemples. Connectez un service de réservation pour confirmer la disponibilité réelle.",
+    calendarLoading: "Chargement du calendrier…",
+    calendarFallback: "Si le calendrier ne s’affiche pas,",
+    calendarFallbackLink: "ouvrez la page de réservation dans un nouvel onglet",
+    bookedTitle: "Votre rendez-vous est confirmé ✓",
+    bookedText: "Vous recevrez un e-mail de confirmation et nous vous contacterons à l’heure prévue.",
     backBtn: "← Retour aux informations",
-    confirmBtn: "Confirmer ma demande",
     aboutTitle: "DarFlow — Qui sommes-nous ?",
     aboutP1: "DarFlow conçoit des systèmes intelligents pour les agences immobilières au Maroc afin d’améliorer l’expérience client et de transformer les demandes en opportunités concrètes.",
     aboutP2: "Nous créons des solutions pour répondre aux premiers messages, recueillir les informations, qualifier les prospects et organiser le suivi et les rendez-vous.",
@@ -1390,8 +1344,6 @@ const translations = {
     volumeMore: "Plus de 1 000",
     phoneError: "Veuillez saisir un numéro WhatsApp marocain valide.",
     fixFields: "Veuillez vérifier tous les champs obligatoires.",
-    chooseSlot: "Veuillez choisir une date et une heure.",
-    submitted: "Les données ont été vérifiées dans cette démonstration. Connectez un service d’envoi pour recevoir les demandes.",
     playLabel: "Lire la vidéo",
     closeLabel: "Fermer"
   },
@@ -1456,11 +1408,12 @@ const translations = {
     nextBtn: "Next: choose a time →",
     calendarTitle: "Choose a suitable time",
     calendarSub: "Select an available day, then choose a time.",
-    timesTitle: "Suggested times",
-    chooseDay: "Choose a date first.",
-    availabilityNote: "These are sample time slots. Connect a booking service to confirm real availability.",
+    calendarLoading: "Loading the calendar…",
+    calendarFallback: "If the calendar doesn’t appear,",
+    calendarFallbackLink: "open the booking page in a new tab",
+    bookedTitle: "Your appointment is confirmed ✓",
+    bookedText: "You will receive a confirmation email, and we’ll contact you at the scheduled time.",
     backBtn: "← Back to details",
-    confirmBtn: "Submit consultation request",
     aboutTitle: "DarFlow — About us",
     aboutP1: "DarFlow builds smart systems for real estate agencies in Morocco to improve customer experience and turn inquiries into real sales opportunities.",
     aboutP2: "We create workflows for first responses, information collection, lead qualification, follow-up and appointment organization.",
@@ -1480,13 +1433,12 @@ const translations = {
     volumeMore: "More than 1,000",
     phoneError: "Please enter a valid Moroccan WhatsApp number.",
     fixFields: "Please check all required fields.",
-    chooseSlot: "Please choose a date and time.",
-    submitted: "Your details were validated in this demo. Connect a submission service to receive requests.",
     playLabel: "Play video",
     closeLabel: "Close"
   }
 };
 
+/* [عربية, فرنسية (هي القيمة المحفوظة), إنجليزية] */
 const cityData = [
   ["الدار البيضاء", "Casablanca", "Casablanca"],
   ["الرباط", "Rabat", "Rabat"],
@@ -1515,6 +1467,22 @@ const cityData = [
   ["شفشاون", "Chefchaouen", "Chefchaouen"],
   ["أخرى", "Autre", "Other"]
 ];
+
+/* تسميات تُرسل لك داخل ملاحظات الحجز (بالفرنسية ليسهل قراءتها) */
+const VOLUME_LABELS = {
+  "under100": "Moins de 100",
+  "100-500": "100 à 500",
+  "500-1000": "500 à 1000",
+  "over1000": "Plus de 1000"
+};
+
+const PAIN_LABELS = {
+  "slow-replies": "Réponses trop lentes",
+  "lost-leads": "Prospects perdus sans suivi",
+  "viewings": "Visites difficiles à organiser",
+  "scattered-info": "Informations dispersées",
+  "reports": "Manque de rapports"
+};
 
 let currentLanguage = "ar";
 const $ = id => document.getElementById(id);
@@ -1565,14 +1533,12 @@ function setLanguage(language) {
 
   cityData.forEach(city => {
     const option = document.createElement("option");
-    option.value = city[0];
+    option.value = city[1];
     option.textContent = city[language === "ar" ? 0 : language === "fr" ? 1 : 2];
     citySelect.appendChild(option);
   });
 
   citySelect.value = oldCity;
-
-  renderCalendar();
 }
 
 $("language").addEventListener("change", event => {
@@ -1606,11 +1572,32 @@ document.addEventListener("keydown", event => {
   }
 });
 
+/* ===== التحقق من الهاتف المغربي ===== */
+function toLatinDigits(value) {
+  return value.replace(/[\u0660-\u0669\u06F0-\u06F9]/g, digit => {
+    const code = digit.charCodeAt(0);
+    return String(code >= 0x06F0 ? code - 0x06F0 : code - 0x0660);
+  });
+}
+
+function cleanPhone(value) {
+  return toLatinDigits(value.trim()).replace(/[\s().-]/g, "");
+}
+
 function validMoroccanPhone(value) {
-  const phone = value.trim().replace(/[\s().-]/g, "");
+  const phone = cleanPhone(value);
   return /^0[67]\d{8}$/.test(phone) ||
          /^\+212[67]\d{8}$/.test(phone) ||
          /^212[67]\d{8}$/.test(phone);
+}
+
+/* صيغة موحدة: +2126XXXXXXXX */
+function normalizePhone(value) {
+  const phone = cleanPhone(value);
+  if (phone.startsWith("+212")) return phone;
+  if (phone.startsWith("212")) return "+" + phone;
+  if (phone.startsWith("0")) return "+212" + phone.slice(1);
+  return phone;
 }
 
 function validateStepOne() {
@@ -1645,18 +1632,126 @@ function validateStepOne() {
   return valid;
 }
 
+/* ===== Calendly: الحجز الحقيقي ===== */
+let calendlyBooked = false;
+
+function collectLead() {
+  return {
+    name: $("fullName").value.trim(),
+    agency: $("agency").value.trim(),
+    city: $("city").value,
+    monthlyLeadVolume: VOLUME_LABELS[$("volume").value] || $("volume").value,
+    phone: normalizePhone($("phone").value),
+    email: $("email").value.trim(),
+    challenges: [...document.querySelectorAll('input[name="pain"]:checked')]
+      .map(input => PAIN_LABELS[input.value] || input.value)
+  };
+}
+
+/* نمرر معلومات الفورمولير إلى Calendly: الاسم والإيميل + ملخص في خانة الملاحظات */
+function buildPrefill() {
+  const lead = collectLead();
+
+  const summary = [
+    "Agence : " + lead.agency,
+    "Ville : " + lead.city,
+    "Demandes clients / mois : " + lead.monthlyLeadVolume,
+    "WhatsApp : " + lead.phone,
+    "Problèmes : " + lead.challenges.join(", ")
+  ].join("\n");
+
+  const prefill = {
+    name: lead.name,
+    customAnswers: { a1: summary }
+  };
+
+  if (lead.email) prefill.email = lead.email;
+  return prefill;
+}
+
+function buildCalendlyUrl() {
+  const url = new URL(CALENDLY_URL);
+  url.searchParams.set("hide_gdpr_banner", "1");
+  url.searchParams.set("primary_color", "b18b45");
+  return url.toString();
+}
+
+function mountCalendly() {
+  const box = $("calendlyBox");
+  const loading = $("calendlyLoading");
+
+  box.innerHTML = "";
+  loading.classList.remove("hidden");
+
+  let tries = 0;
+
+  (function attempt() {
+    if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
+      window.Calendly.initInlineWidget({
+        url: buildCalendlyUrl(),
+        parentElement: box,
+        prefill: buildPrefill(),
+        utm: { utmSource: "darflow_landing" }
+      });
+
+      const iframe = box.querySelector("iframe");
+      if (iframe) {
+        iframe.addEventListener("load", () => loading.classList.add("hidden"));
+      }
+      return;
+    }
+
+    if (tries++ < 40) {
+      setTimeout(attempt, 250);
+    } else {
+      loading.classList.add("hidden");
+    }
+  })();
+}
+
+function onBooked(payload) {
+  calendlyBooked = true;
+
+  console.log("DarFlow booking confirmed:", {
+    lead: collectLead(),
+    calendly: payload
+  });
+
+  $("bookedBox").classList.remove("hidden");
+  $("backStep").classList.add("hidden");
+  showToast(translations[currentLanguage].bookedTitle);
+}
+
+window.addEventListener("message", event => {
+  if (event.origin !== "https://calendly.com") return;
+
+  const type = event.data && event.data.event;
+  if (typeof type !== "string" || !type.startsWith("calendly.")) return;
+
+  $("calendlyLoading").classList.add("hidden");
+
+  if (type === "calendly.event_scheduled") {
+    onBooked(event.data.payload);
+  }
+});
+
+$("calendlyFallback").href = CALENDLY_URL;
+
+/* ===== مراحل الفورمولير ===== */
 $("nextStep").addEventListener("click", () => {
   if (!validateStepOne()) return;
 
+  console.log("DarFlow lead (step 1):", collectLead());
+
   $("formStep1").classList.add("hidden");
   $("formStep2").classList.remove("hidden");
+
+  if (!calendlyBooked) mountCalendly();
 
   $("formStep2").scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
-
-  renderCalendar();
 });
 
 $("backStep").addEventListener("click", () => {
@@ -1669,145 +1764,13 @@ $("backStep").addEventListener("click", () => {
   });
 });
 
-const timeSlots = [
-  "09:00", "10:00", "11:00", "12:00",
-  "14:00", "15:00", "16:00", "17:00"
-];
+/* الضغط على Enter داخل الحقول يعمل مثل زر "التالي" */
+$("bookingForm").addEventListener("submit", event => {
+  event.preventDefault();
 
-const now = new Date();
-let calendarYear = now.getFullYear();
-let calendarMonth = now.getMonth();
-let selectedDate = null;
-let selectedTime = null;
-
-function dateKey(date) {
-  return [
-    date.getFullYear(),
-    String(date.getMonth() + 1).padStart(2, "0"),
-    String(date.getDate()).padStart(2, "0")
-  ].join("-");
-}
-
-function renderCalendar() {
-  const locale = currentLanguage === "ar"
-    ? "ar-MA"
-    : currentLanguage === "fr"
-      ? "fr-FR"
-      : "en-GB";
-
-  $("monthLabel").textContent = new Intl.DateTimeFormat(locale, {
-    month: "long",
-    year: "numeric"
-  }).format(new Date(calendarYear, calendarMonth, 1));
-
-  const weekdayNames = currentLanguage === "ar"
-    ? ["ن", "ث", "ر", "خ", "ج", "س", "ح"]
-    : currentLanguage === "fr"
-      ? ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
-      : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-  $("weekdays").innerHTML = "";
-  weekdayNames.forEach(day => {
-    const item = document.createElement("span");
-    item.textContent = day;
-    $("weekdays").appendChild(item);
-  });
-
-  const daysBox = $("days");
-  daysBox.innerHTML = "";
-
-  const firstDay = new Date(calendarYear, calendarMonth, 1);
-  const offset = (firstDay.getDay() + 6) % 7;
-  const daysInMonth = new Date(calendarYear, calendarMonth + 1, 0).getDate();
-
-  for (let i = 0; i < offset; i++) {
-    daysBox.appendChild(document.createElement("span"));
+  if (!$("formStep1").classList.contains("hidden")) {
+    $("nextStep").click();
   }
-
-  for (let day = 1; day <= daysInMonth; day++) {
-    const date = new Date(calendarYear, calendarMonth, day);
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "day";
-    button.textContent = day;
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    button.disabled = date < today || date.getDay() === 0;
-
-    const key = dateKey(date);
-    if (selectedDate === key) button.classList.add("selected");
-
-    button.addEventListener("click", () => {
-      selectedDate = key;
-      selectedTime = null;
-      renderCalendar();
-      renderTimeSlots();
-    });
-
-    daysBox.appendChild(button);
-  }
-
-  renderTimeSlots();
-}
-
-function renderTimeSlots() {
-  const t = translations[currentLanguage];
-  const locale = currentLanguage === "ar"
-    ? "ar-MA"
-    : currentLanguage === "fr"
-      ? "fr-FR"
-      : "en-GB";
-
-  $("selectedDateText").textContent = selectedDate
-    ? new Intl.DateTimeFormat(locale, {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-      }).format(new Date(selectedDate + "T12:00:00"))
-    : t.chooseDay;
-
-  const slotsBox = $("slots");
-  slotsBox.innerHTML = "";
-
-  timeSlots.forEach((time, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "slot";
-    button.textContent = time;
-    button.disabled = !selectedDate;
-
-    if (selectedDate && selectedTime === time) {
-      button.classList.add("selected");
-    }
-
-    button.addEventListener("click", () => {
-      selectedTime = time;
-      renderTimeSlots();
-    });
-
-    slotsBox.appendChild(button);
-  });
-}
-
-$("prevMonth").addEventListener("click", () => {
-  calendarMonth--;
-  if (calendarMonth < 0) {
-    calendarMonth = 11;
-    calendarYear--;
-  }
-  renderCalendar();
-});
-
-$("nextMonth").addEventListener("click", () => {
-  calendarMonth++;
-  if (calendarMonth > 11) {
-    calendarMonth = 0;
-    calendarYear++;
-  }
-  renderCalendar();
 });
 
 function showToast(message) {
@@ -1820,39 +1783,6 @@ function showToast(message) {
     toast.classList.add("hidden");
   }, 5000);
 }
-
-$("bookingForm").addEventListener("submit", event => {
-  event.preventDefault();
-
-  const t = translations[currentLanguage];
-
-  if (!validateStepOne()) {
-    $("formStep2").classList.add("hidden");
-    $("formStep1").classList.remove("hidden");
-    return;
-  }
-
-  if (!selectedDate || !selectedTime) {
-    showToast(t.chooseSlot);
-    return;
-  }
-
-  const formData = {
-    name: $("fullName").value.trim(),
-    agency: $("agency").value.trim(),
-    city: $("city").value,
-    monthlyLeadVolume: $("volume").value,
-    phone: $("phone").value.trim(),
-    email: $("email").value.trim(),
-    challenges: [...document.querySelectorAll('input[name="pain"]:checked')]
-      .map(input => input.value),
-    date: selectedDate,
-    time: selectedTime
-  };
-
-  console.log("DarFlow consultation request:", formData);
-  showToast(t.submitted);
-});
 
 /* الفيديو: تسريع البداية ثم العودة للسرعة العادية */
 const video = $("demoVideo");
