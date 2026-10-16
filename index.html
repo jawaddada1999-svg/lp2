@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b211b">
 <title>DarFlow | أنظمة ذكية للوكالات العقارية</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,61 +27,45 @@
     --radius: 20px;
     --font: "Cairo", "Noto Sans Arabic", Tahoma, sans-serif;
   }
-
   html[lang="fr"], html[lang="en"] { --font: "Inter", Arial, sans-serif; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-
   body {
     font-family: var(--font);
-    background:
-      radial-gradient(1100px 520px at 85% -10%, #1d4837 0%, transparent 60%),
-      var(--bg);
+    background: radial-gradient(1100px 520px at 85% -10%, #1d4837 0%, transparent 60%), var(--bg);
     color: var(--cream);
     font-size: 16px;
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
-
   html[lang="fr"] body, html[lang="en"] body { line-height: 1.65; }
-
-  button, input, select { font: inherit; color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
   a { color: inherit; text-decoration: none; }
   button, select, a { cursor: pointer; }
-
   :focus-visible { outline: 3px solid var(--gold-2); outline-offset: 3px; }
+  ol, ul { list-style: none; }
 
   .skip {
     position: absolute; inset-inline-start: 1rem; top: -4rem; z-index: 100;
     background: var(--gold); color: var(--ink); padding: .5rem 1rem; border-radius: 8px;
   }
   .skip:focus { top: 1rem; }
-
   .container { width: min(1160px, 90%); margin-inline: auto; }
   .hidden { display: none !important; }
 
-  /* ===== الهيدر ===== */
+  /* الهيدر */
   header {
     position: sticky; top: 0; z-index: 30;
-    background: rgba(8, 27, 22, .94);
-    backdrop-filter: blur(14px);
+    background: rgba(8, 27, 22, .94); backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--line);
   }
-  .nav {
-    min-height: 76px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  }
-  .brand {
-    color: var(--gold); font-size: 28px; font-weight: 900; letter-spacing: -.5px;
-    direction: ltr;
-  }
+  .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { color: var(--gold); font-size: 28px; font-weight: 900; letter-spacing: -.5px; direction: ltr; }
   .brand span { color: #fff; }
   .nav-right { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: flex-end; }
   .nav-right a, .nav-link {
-    background: none; border: 0; font-weight: 600; color: var(--cream);
-    min-height: 44px; padding: 0 4px;
+    background: none; border: 0; font-weight: 600; color: var(--cream); min-height: 44px; padding: 0 4px;
   }
   .nav-right a:hover, .nav-link:hover { color: var(--gold); }
   .language {
@@ -91,81 +74,66 @@
   }
   .language option { background: var(--bg); color: #fff; }
 
-  /* ===== الهيرو ===== */
+  /* الهيرو */
   .hero { padding: 100px 0 70px; text-align: center; }
   .eyebrow {
-    display: inline-block; padding: 7px 16px;
-    border: 1px solid var(--line); border-radius: 40px;
+    display: inline-block; padding: 7px 16px; border: 1px solid var(--line); border-radius: 40px;
     color: var(--gold-2); font-size: 14px; font-weight: 700;
   }
   h1, h2, h3 { font-weight: 800; line-height: 1.5; }
-  h1 {
-    max-width: 1000px; margin: 24px auto 22px;
-    font-size: clamp(34px, 4.6vw, 66px); overflow-wrap: break-word;
-  }
+  h1 { max-width: 1000px; margin: 24px auto 22px; font-size: clamp(34px, 4.6vw, 66px); overflow-wrap: break-word; }
   h1 em { color: var(--gold); font-style: normal; }
-  .lead {
-    max-width: 820px; margin: 0 auto; color: #d7dfd8;
-    font-size: clamp(16px, 1.4vw, 19px); line-height: 2;
-  }
+  .lead { max-width: 820px; margin: 0 auto; color: #d7dfd8; font-size: clamp(16px, 1.4vw, 19px); line-height: 2; }
 
-  /* ===== الأزرار ===== */
+  /* الأزرار */
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    min-height: 52px; padding: 13px 26px; border-radius: 14px;
-    border: 1px solid var(--gold);
+    min-height: 52px; padding: 13px 26px; border-radius: 14px; border: 1px solid var(--gold);
     background: linear-gradient(135deg, var(--gold-2), var(--gold));
     color: var(--ink); font-weight: 800; text-align: center; line-height: 1.4;
     transition: transform .2s, filter .2s;
   }
   .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
   .btn:disabled { opacity: .6; cursor: progress; transform: none; }
-  .btn-ghost {
-    background: transparent; color: var(--gold-2); border-color: var(--line);
-  }
+  .btn-ghost { background: transparent; color: var(--gold-2); border-color: var(--line); }
   .btn-ghost:hover { background: rgba(216, 181, 109, .08); filter: none; }
 
-  /* ===== الأقسام ===== */
+  /* الأقسام */
   .section { padding: 96px 0; }
   .section-alt { background: var(--bg-2); }
   .section-head { max-width: 820px; margin: 0 auto 50px; text-align: center; }
   .section-head h2 { margin: 16px 0 0; font-size: clamp(28px, 3.2vw, 44px); }
   .gold { color: var(--gold-2); }
 
-  /* ===== العرض التوضيحي ===== */
+  /* الفيديو */
   .video-card {
-    max-width: 950px; margin: auto; overflow: hidden;
-    border: 1px solid var(--line); border-radius: 22px;
-    background: #07140f; box-shadow: 0 25px 70px #0004;
+    max-width: 950px; margin: auto; overflow: hidden; border: 1px solid var(--line);
+    border-radius: 22px; background: #07140f; box-shadow: 0 25px 70px #0004;
   }
   .video-title { padding: 22px; text-align: center; }
   .video-title h3 { font-size: clamp(20px, 2vw, 27px); line-height: 1.6; }
   .video-stage {
-    position: relative; display: grid; place-items: center;
-    aspect-ratio: 16 / 9; overflow: hidden;
-    background: radial-gradient(circle, #1b4938, #07130f 75%);
+    position: relative; display: grid; place-items: center; aspect-ratio: 16 / 9; overflow: hidden;
+    background: radial-gradient(circle, #1b4938, #07130f 75%); cursor: pointer;
   }
   .video-stage video {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: contain; background: #07130f;
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #07130f;
   }
   .play-button {
     position: relative; z-index: 2; display: grid; place-items: center;
     width: 78px; height: 78px; border: 1px solid var(--gold); border-radius: 50%;
-    background: #0b211bd9; color: var(--gold-2); font-size: 29px;
-    box-shadow: 0 0 0 12px #d8b56d12;
+    background: #0b211bd9; color: var(--gold-2); font-size: 29px; box-shadow: 0 0 0 12px #d8b56d12;
   }
   .video-overlay {
     position: absolute; z-index: 2; right: 20px; left: 20px; bottom: 20px;
-    color: #fff; font-size: 14px; text-align: center;
-    pointer-events: none; text-shadow: 0 2px 8px #000;
+    color: #fff; font-size: 14px; text-align: center; pointer-events: none; text-shadow: 0 2px 8px #000;
   }
   .video-stage.playing .play-button { opacity: 0; }
   .video-stage.playing:hover .play-button { opacity: 1; }
   .progress { height: 5px; background: #ffffff18; }
   .progress-bar { width: 0; height: 100%; background: var(--gold); }
 
-  /* ===== الخدمات ===== */
+  /* الخدمات */
   .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .feature {
     padding: 30px; border: 1px solid var(--line); border-radius: var(--radius);
@@ -174,44 +142,35 @@
   }
   .feature:hover { transform: translateY(-4px); border-color: var(--gold); }
   .icon {
-    width: 48px; height: 48px; border-radius: 50%;
-    display: grid; place-items: center;
+    width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center;
     border: 1px solid var(--line); color: var(--gold); font-size: 22px; margin-bottom: 14px;
   }
   .feature h3 { font-size: 20px; margin-bottom: 8px; }
   .feature p { color: var(--muted); font-size: 15px; }
 
-  /* ===== المراحل ===== */
+  /* المراحل */
   .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
   .step { padding: 8px 22px; border-inline-start: 3px solid var(--gold); }
   .step-number { color: var(--gold); font-size: 13px; font-weight: 800; letter-spacing: .08em; }
   .step h3 { margin: 8px 0; font-size: 21px; }
   .step p { color: var(--muted); font-size: 15px; }
 
-  /* ===== الحجز (مخفي حتى ينتهي الفيديو) ===== */
+  /* الحجز: مخفي حتى ينتهي الفيديو */
   #booking { display: none; }
   #booking.revealed { display: block; }
-
-  /* وضع الحجز: بعد انتهاء الفيديو، تبقى واجهة الحجز فقط */
   body.booking-mode main > section:not(#booking) { display: none; }
   body.booking-mode #booking { padding-top: 56px; min-height: calc(100vh - 76px); }
   body.booking-mode .book-aside { display: none; }
-  body.booking-mode .book {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 860px; margin-inline: auto;
-  }
+  body.booking-mode .book { grid-template-columns: minmax(0, 1fr); max-width: 860px; margin-inline: auto; }
 
-  .book {
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
-    gap: 28px; align-items: start;
-  }
+  .book { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr); gap: 28px; align-items: start; }
   .book-aside {
     padding: 38px; border: 1px solid var(--line); border-radius: var(--radius);
     background: linear-gradient(160deg, var(--card), var(--card-2));
   }
   .book-aside h2 { font-size: clamp(24px, 2.4vw, 32px); margin: 14px 0 12px; }
   .book-aside > p { color: var(--muted); font-size: 15px; }
-  .perks { list-style: none; margin: 26px 0; display: grid; gap: 14px; }
+  .perks { margin: 26px 0; display: grid; gap: 14px; }
   .perks li { display: flex; gap: 12px; align-items: flex-start; color: #e5ece7; font-size: 15px; }
   .perks li::before {
     content: "✓"; flex: none; width: 24px; height: 24px; border-radius: 50%;
@@ -224,9 +183,10 @@
 
   .book-main {
     background: var(--paper); color: var(--ink); border-radius: var(--radius);
-    padding: clamp(22px, 4vw, 40px); box-shadow: 0 30px 80px #0006;
+    padding: clamp(22px, 4vw, 40px); box-shadow: 0 30px 80px #0006; min-width: 0;
   }
-  .stepper { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .stepper { display: flex; align-items: center; gap: 12px; margin: 0 0 26px; flex-wrap: wrap; }
+  .stepper .line { flex: 1; height: 1px; background: var(--field-line); min-width: 16px; }
   .stp { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #7a857e; }
   .stp b {
     width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
@@ -235,36 +195,38 @@
   .stp.is-active { color: var(--ink); }
   .stp.is-active b { background: #16382c; border-color: #16382c; color: var(--gold-2); }
   .stp.is-done b { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-  .stp.is-done b::before { content: "✓"; }
-  .stp.is-done b span { display: none; }
-  .stepper .line { flex: 1; height: 1px; background: var(--field-line); min-width: 16px; }
 
   .book-main h3 { font-size: 24px; margin-bottom: 6px; }
   .sub { color: #66736b; font-size: 15px; margin-bottom: 24px; }
+  .banner {
+    padding: 12px 14px; border-radius: 12px; margin: 0 0 18px; font-weight: 600; font-size: 14px;
+    border: 1px solid #efb6ae; background: #fbe9e7; color: #8a1c14;
+  }
+  .banner:focus { outline: none; }
 
+  /* الفورمولير */
   .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; }
   .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
   .field.full { grid-column: 1 / -1; }
-  .field label, .field legend { font-size: 14px; font-weight: 700; color: var(--ink); }
-  .field input, .field select {
-    width: 100%; min-height: 52px; padding: 12px 14px;
-    border: 1px solid var(--field-line); border-radius: 12px; background: #fff; color: var(--ink);
-    unicode-bidi: plaintext;
+  .field label, .lbl { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .field input, .field select, .field textarea {
+    width: 100%; min-height: 52px; padding: 12px 14px; border: 1px solid var(--field-line);
+    border-radius: 12px; background: #fff; color: var(--ink); unicode-bidi: plaintext;
   }
+  .field textarea { min-height: 96px; resize: vertical; }
   .field select {
     appearance: none; -webkit-appearance: none; cursor: pointer; padding-inline-end: 40px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2316382c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: left 14px center;
   }
   html[dir="ltr"] .field select { background-position: right 14px center; }
-  .field input::placeholder { color: #9aa39d; opacity: 1; }
-  .field input:focus, .field select:focus {
+  .field input::placeholder, .field textarea::placeholder { color: #9aa39d; opacity: 1; }
+  .field input:focus, .field select:focus, .field textarea:focus {
     border-color: #ad8845; outline: 3px solid rgba(216, 181, 109, .45); outline-offset: 1px;
   }
   .field [aria-invalid="true"] { border-color: var(--error); }
   .err { color: var(--error); font-size: 13px; }
   .err:empty { display: none; }
-
   .pains { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .pain {
     display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 12px;
@@ -273,33 +235,57 @@
   }
   .pain:has(input:checked) { border-color: #ad8845; background: #fbf5e7; }
   .pain input { width: 18px; height: 18px; accent-color: #9c783b; flex: none; }
-
   .actions {
     display: flex; justify-content: space-between; align-items: center;
     gap: 14px; flex-wrap: wrap; margin-top: 28px;
   }
-  .actions .btn { min-width: 220px; }
+  .actions .btn { min-width: 200px; }
   .note { color: #66736b; font-size: 13px; }
-  .form-msg { margin-top: 14px; font-weight: 600; }
   .hp { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; opacity: 0; }
 
-  /* Calendly */
-  .cal-frame {
-    position: relative; border: 1px solid var(--field-line); border-radius: 16px;
-    overflow: hidden; background: #fff;
+  /* التقويم والمواعيد */
+  .cal-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; }
+  .cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; }
+  .cal-nav {
+    width: 44px; height: 44px; border: 1px solid var(--field-line); border-radius: 12px;
+    background: #fff; color: var(--ink); font-size: 20px;
   }
-  .calendly-inline-widget { min-width: 320px; height: 700px; }
-  .cal-loading {
-    position: absolute; inset: 0; display: grid; place-items: center;
-    color: #66736b; background: #fff; z-index: 1; text-align: center; padding: 20px;
+  .cal-nav:disabled { opacity: .35; cursor: not-allowed; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+  .cal-dow { font-size: 12px; color: #66736b; text-align: center; padding: 6px 0; }
+  .day {
+    min-height: 44px; border-radius: 10px; border: 1px solid transparent;
+    background: #fff; color: var(--ink); font-weight: 700;
   }
-  .cal-fallback { margin-top: 12px; font-size: 13px; color: #66736b; }
-  .cal-fallback a { color: #85672e; text-decoration: underline; }
+  .day:not(:disabled):hover { border-color: #ad8845; }
+  .day:disabled { opacity: .3; cursor: not-allowed; text-decoration: line-through; }
+  .day[aria-pressed="true"] { background: #16382c; color: var(--gold-2); }
+  .day.is-today { outline: 1px solid var(--gold); }
+  .slot-hint { font-size: 14px; color: #5b5139; margin-bottom: 12px; min-height: 22px; }
+  .slots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-content: start; }
+  .slot {
+    min-height: 46px; border: 1px solid var(--field-line); border-radius: 12px;
+    background: #fff; color: var(--ink); font-weight: 700;
+  }
+  .slot:not(:disabled):hover { border-color: #ad8845; }
+  .slot[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .slot:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+  .legend { display: flex; gap: 16px; margin-top: 14px; font-size: 13px; color: #66736b; flex-wrap: wrap; }
+  .legend > span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot-avail { background: var(--gold); }
+  .dot-busy { background: #cfcac0; }
 
-  .done {
-    text-align: center; padding: 34px 22px; border: 1px solid var(--gold);
-    border-radius: 16px; background: #f6f0e4;
+  /* المراجعة */
+  .review {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 18px; margin: 0; padding: 18px;
+    border: 1px solid var(--field-line); border-radius: 14px; background: #fbfaf6;
   }
+  .review dt { color: #66736b; font-size: 14px; }
+  .review dd { margin: 0; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
+
+  /* النجاح */
+  .done { text-align: center; padding: 34px 22px; border: 1px solid var(--gold); border-radius: 16px; background: #f6f0e4; }
   .done .check {
     width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 14px;
     display: grid; place-items: center; background: #16382c; color: var(--gold-2); font-size: 30px;
@@ -307,21 +293,19 @@
   .done h3 { margin-bottom: 8px; }
   .done p { color: #5b5139; font-size: 15px; }
 
-  /* ===== الفوتر والنافذة ===== */
+  /* الفوتر والنافذة */
   footer { padding: 30px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
-
   dialog {
     width: min(640px, calc(100% - 32px)); max-height: calc(100vh - 40px); overflow: auto;
-    padding: 0; border: 1px solid var(--line); border-radius: 20px;
-    background: #0d291f; color: var(--cream);
+    padding: 0; border: 1px solid var(--line); border-radius: 20px; background: #0d291f; color: var(--cream);
   }
   dialog::backdrop { background: rgba(0, 0, 0, .72); }
   .dlg { padding: clamp(24px, 5vw, 36px); position: relative; }
   .dlg h2 { color: var(--gold-2); font-size: 28px; margin-bottom: 14px; }
   .dlg p { color: #d3ddd5; margin-bottom: 14px; }
   .dlg h3 { color: var(--gold-2); font-size: 18px; margin: 22px 0 10px; }
-  .dlg ul { padding-inline-start: 20px; color: #d3ddd5; }
+  .dlg ul { list-style: disc; padding-inline-start: 20px; color: #d3ddd5; }
   .dlg li { margin-bottom: 6px; }
   .dlg-close {
     position: absolute; top: 14px; inset-inline-end: 14px; width: 42px; height: 42px;
@@ -329,13 +313,13 @@
   }
   .dlg .btn { margin-top: 18px; }
 
-  /* ===== التجاوب ===== */
+  /* التجاوب */
   @media (max-width: 960px) {
     .book { grid-template-columns: 1fr; }
     .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .steps { grid-template-columns: 1fr; }
+    .cal-wrap { grid-template-columns: 1fr; }
   }
-
   @media (max-width: 720px) {
     body { font-size: 15px; }
     .nav { min-height: auto; padding-block: 12px; }
@@ -348,14 +332,16 @@
     .grid { grid-template-columns: 1fr; }
     .form-grid, .pains { grid-template-columns: 1fr; }
     .book-aside { padding: 26px; }
+    .book-main { padding: 20px; }
     .actions .btn { width: 100%; min-width: 0; }
+    .review { grid-template-columns: 1fr; gap: 4px; }
+    .review dt { margin-top: 10px; }
     .video-stage { aspect-ratio: 4 / 3; }
     .play-button { width: 65px; height: 65px; }
     .video-overlay { bottom: 12px; font-size: 12px; }
-    .calendly-inline-widget { height: 760px; }
-    body.booking-mode #booking { padding-top: 32px; }
+    .cal-grid { gap: 4px; }
+    .day { min-height: 42px; }
   }
-
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -369,7 +355,6 @@
 <header>
   <div class="container nav">
     <a class="brand" href="#top" aria-label="DarFlow">Dar<span>Flow</span></a>
-
     <nav class="nav-right" aria-label="Main">
       <a href="#features" data-i18n="nav_services">خدماتنا</a>
       <button class="nav-link" type="button" data-open-about data-i18n="nav_about">من نحن؟</button>
@@ -398,26 +383,19 @@
         <span class="eyebrow" data-i18n="demo_eyebrow">عرض توضيحي</span>
         <h2 data-i18n-html="demo_title">اكتشف كيف يعمل النظام <span class="gold">بذكاء وفعالية</span></h2>
       </div>
-
       <div class="video-card">
         <div class="video-title">
           <h3 data-i18n="video_heading">شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة</h3>
         </div>
-
         <div class="video-stage" id="videoStage">
           <!-- استبدل الرابط بفيديو الوكالة الخاص بك -->
           <video id="demoVideo" playsinline preload="metadata">
             <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
           </video>
-
-          <button class="play-button" id="playDemo" type="button" aria-label="Play video">▶</button>
-
+          <button class="play-button" id="playDemo" type="button">▶</button>
           <div class="video-overlay" id="videoOverlay" data-i18n="video_overlay">شاهد الفيديو حتى النهاية لفتح نموذج الاستشارة</div>
         </div>
-
-        <div class="progress">
-          <div class="progress-bar" id="videoProgress"></div>
-        </div>
+        <div class="progress"><div class="progress-bar" id="videoProgress"></div></div>
       </div>
     </div>
   </section>
@@ -465,7 +443,7 @@
         <aside class="book-aside">
           <span class="eyebrow" data-i18n="book_eyebrow2">استشارة مجانية</span>
           <h2 data-i18n="book_aside_title">نفهم وكالتك قبل أي شيء</h2>
-          <p data-i18n="book_lead">أجب عن بعض الأسئلة، ثم اختر الموعد الذي يناسبك. سنتواصل معك لتأكيد التفاصيل.</p>
+          <p data-i18n="book_lead">أجب عن بعض الأسئلة، ثم اختر الموعد الذي يناسبك.</p>
           <ul class="perks">
             <li data-i18n="bb1">تحليل سريع لطريقة استقبال طلبات وكالتك</li>
             <li data-i18n="bb2">تحديد أهم نقاط الضياع في المبيعات</li>
@@ -480,15 +458,19 @@
         </aside>
 
         <div class="book-main">
-          <div class="stepper" role="group" aria-label="Booking steps">
-            <div class="stp is-active" data-step="1" aria-current="step"><b>1</b><span data-i18n="st_info">معلوماتك</span></div>
-            <span class="line" aria-hidden="true"></span>
-            <div class="stp" data-step="2"><b>2</b><span data-i18n="st_slot">الموعد</span></div>
-          </div>
+          <ol class="stepper" aria-label="Booking steps">
+            <li class="stp is-active" data-step="1" aria-current="step"><b>1</b><span data-i18n="st1">معلوماتك</span></li>
+            <li class="line" aria-hidden="true"></li>
+            <li class="stp" data-step="2"><b>2</b><span data-i18n="st2">الموعد</span></li>
+            <li class="line" aria-hidden="true"></li>
+            <li class="stp" data-step="3"><b>3</b><span data-i18n="st3">المراجعة</span></li>
+          </ol>
 
-          <!-- المرحلة 1: المعلومات -->
-          <form id="infoForm" novalidate>
-            <h3 data-i18n="s1_title">أخبرنا عن وكالتك</h3>
+          <div id="banner" class="banner hidden" role="alert" tabindex="-1"></div>
+
+          <!-- المرحلة 1 -->
+          <form id="step1" class="panel" novalidate>
+            <h3 tabindex="-1" data-i18n="s1_title">أخبرنا عن وكالتك</h3>
             <p class="sub" data-i18n="s1_sub">تساعدنا هذه المعلومات على إعداد استشارة مناسبة لاحتياجاتك.</p>
 
             <div class="form-grid">
@@ -497,51 +479,35 @@
                 <input id="name" name="name" autocomplete="name" data-i18n-ph="f_name_ph" placeholder="الاسم الكامل" aria-describedby="err-name">
                 <span class="err" id="err-name"></span>
               </div>
-
               <div class="field">
                 <label for="phone" data-i18n="f_phone">رقم الواتساب *</label>
                 <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="06XXXXXXXX" aria-describedby="err-phone">
                 <span class="err" id="err-phone"></span>
               </div>
-
               <div class="field">
                 <label for="agency" data-i18n="f_agency">اسم الوكالة *</label>
                 <input id="agency" name="agency" autocomplete="organization" data-i18n-ph="f_agency_ph" placeholder="اسم وكالتك" aria-describedby="err-agency">
                 <span class="err" id="err-agency"></span>
               </div>
-
               <div class="field">
                 <label for="city" data-i18n="f_city">المدينة *</label>
                 <select id="city" name="city" aria-describedby="err-city"></select>
                 <span class="err" id="err-city"></span>
               </div>
-
               <div class="field">
                 <label for="team" data-i18n="f_team">عدد أعضاء الفريق *</label>
-                <select id="team" name="team" aria-describedby="err-team">
-                  <option value="" data-i18n="f_pick">اختر</option>
-                  <option value="1 à 3" data-i18n="o_team1">من 1 إلى 3</option>
-                  <option value="4 à 10" data-i18n="o_team2">من 4 إلى 10</option>
-                  <option value="Plus de 10" data-i18n="o_team3">أكثر من 10</option>
-                </select>
+                <select id="team" name="team" aria-describedby="err-team"></select>
                 <span class="err" id="err-team"></span>
               </div>
-
               <div class="field">
                 <label for="demand" data-i18n="f_demand">عدد طلبات الزبناء في الشهر *</label>
-                <select id="demand" name="demand" aria-describedby="err-demand">
-                  <option value="" data-i18n="f_pick">اختر</option>
-                  <option value="Moins de 100" data-i18n="o_dem1">أقل من 100</option>
-                  <option value="100 à 500" data-i18n="o_dem2">من 100 إلى 500</option>
-                  <option value="500 à 1000" data-i18n="o_dem3">من 500 إلى 1000</option>
-                  <option value="Plus de 1000" data-i18n="o_dem4">أكثر من 1000</option>
-                </select>
+                <select id="demand" name="demand" aria-describedby="err-demand"></select>
                 <span class="err" id="err-demand"></span>
               </div>
 
-              <div class="field full">
-                <label data-i18n="f_pains">ما المشكل الذي يزعجك أكثر؟ *</label>
-                <div class="pains" role="group">
+              <div class="field full" role="group" aria-labelledby="painsLbl">
+                <span id="painsLbl" class="lbl" data-i18n="f_pains">ما المشكل الذي يزعجك أكثر؟ *</span>
+                <div class="pains">
                   <label class="pain"><input type="checkbox" name="pains" value="Réponses trop lentes"><span data-i18n="p1">بطء الرد على الزبناء</span></label>
                   <label class="pain"><input type="checkbox" name="pains" value="Prospects perdus sans suivi"><span data-i18n="p2">ضياع الزبناء دون متابعة</span></label>
                   <label class="pain"><input type="checkbox" name="pains" value="Visites difficiles à organiser"><span data-i18n="p3">صعوبة تنظيم المعاينات</span></label>
@@ -552,48 +518,73 @@
               </div>
 
               <div class="field full">
+                <label for="need" data-i18n="f_need">ما حاجتك الأساسية من النظام؟</label>
+                <textarea id="need" name="need" maxlength="600" data-i18n-ph="f_need_ph" placeholder="مثلاً: الرد السريع على الزبناء القادمين من الإعلانات..." aria-describedby="err-need"></textarea>
+                <span class="err" id="err-need"></span>
+              </div>
+
+              <div class="field full">
                 <label for="email" data-i18n="f_email">البريد الإلكتروني (اختياري)</label>
-                <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="err-email">
+                <input id="email" name="email" type="email" autocomplete="email" data-i18n-ph="f_email_ph" placeholder="name@example.com" aria-describedby="err-email">
                 <span class="err" id="err-email"></span>
               </div>
             </div>
 
-            <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input id="hp" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 
             <div class="actions">
               <span class="note" data-i18n="required">* الحقول الإلزامية</span>
-              <button class="btn" id="nextBtn" type="submit" data-i18n="next">التالي: اختيار الموعد</button>
+              <button class="btn" type="submit" data-i18n="btn_next">التالي</button>
             </div>
-            <p class="err form-msg" id="formMsg" role="alert"></p>
           </form>
 
-          <!-- المرحلة 2: التقويم -->
-          <section id="slotStep" class="hidden" aria-labelledby="slotTitle">
-            <h3 id="slotTitle" tabindex="-1" data-i18n="s2_title">اختر الموعد المناسب لك</h3>
-            <p class="sub" data-i18n="s2_sub">اختر يوماً ووقتاً متاحين، وسيصلك تأكيد الموعد مباشرة.</p>
+          <!-- المرحلة 2 -->
+          <section id="step2" class="panel hidden" aria-labelledby="s2Title">
+            <h3 id="s2Title" tabindex="-1" data-i18n="s2_title">اختر الموعد المناسب لك</h3>
+            <p class="sub" data-i18n="s2_sub">اختر يوماً ووقتاً متاحين.</p>
 
-            <div class="cal-frame">
-              <div class="cal-loading" id="calLoading" data-i18n="cal_loading">جارٍ تحميل التقويم…</div>
-              <!-- Début de widget en ligne Calendly -->
-              <div class="calendly-inline-widget" id="calendlyBox" data-url="https://calendly.com/-darflow/30min" style="min-width:320px;height:700px;"></div>
-              <!-- Fin de widget en ligne Calendly -->
+            <div class="cal-wrap">
+              <div>
+                <div class="cal-head">
+                  <button id="calPrev" class="cal-nav" type="button" data-i18n-aria="cal_prev" aria-label="الشهر السابق">‹</button>
+                  <strong id="calTitle" aria-live="polite"></strong>
+                  <button id="calNext" class="cal-nav" type="button" data-i18n-aria="cal_next" aria-label="الشهر التالي">›</button>
+                </div>
+                <div id="calDow" class="cal-grid" aria-hidden="true"></div>
+                <div id="calDays" class="cal-grid"></div>
+              </div>
+              <div>
+                <p id="slotHint" class="slot-hint" aria-live="polite"></p>
+                <div id="slotBox" class="slots"></div>
+                <div class="legend">
+                  <span><i class="dot dot-avail"></i><span data-i18n="cal_avail">متاح</span></span>
+                  <span><i class="dot dot-busy"></i><span data-i18n="cal_busy">محجوز</span></span>
+                </div>
+              </div>
             </div>
 
-            <p class="cal-fallback">
-              <span data-i18n="cal_fallback">إذا لم يظهر التقويم،</span>
-              <a id="calFallback" href="https://calendly.com/-darflow/30min" target="_blank" rel="noopener" data-i18n="cal_link">افتح صفحة الحجز في نافذة جديدة</a>
-            </p>
-
             <div class="actions">
-              <button class="btn btn-ghost" id="backBtn" type="button" data-i18n="back">رجوع للمعلومات</button>
+              <button class="btn btn-ghost" id="backTo1" type="button" data-i18n="btn_back">رجوع</button>
+              <button class="btn" id="toStep3" type="button" data-i18n="btn_next">التالي</button>
             </div>
           </section>
 
-          <!-- بعد الحجز -->
-          <section id="doneStep" class="done hidden" aria-live="polite">
-            <div class="check">✓</div>
-            <h3 tabindex="-1" id="doneTitle" data-i18n="ok_title">تم تأكيد موعدك</h3>
-            <p data-i18n="ok_text">ستصلك رسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك على واتساب.</p>
+          <!-- المرحلة 3 -->
+          <section id="step3" class="panel hidden" aria-labelledby="s3Title">
+            <h3 id="s3Title" tabindex="-1" data-i18n="s3_title">راجع معلوماتك</h3>
+            <p class="sub" data-i18n="s3_sub">تأكد من المعلومات قبل تأكيد الموعد.</p>
+            <dl class="review" id="reviewBox"></dl>
+            <div class="actions">
+              <button class="btn btn-ghost" id="backTo2" type="button" data-i18n="btn_back">رجوع</button>
+              <button class="btn" id="submitBtn" type="button" data-i18n="btn_submit">تأكيد الموعد</button>
+            </div>
+          </section>
+
+          <!-- النجاح -->
+          <section id="success" class="done hidden" aria-live="polite">
+            <div class="check" aria-hidden="true">✓</div>
+            <h3 id="okTitle" tabindex="-1" data-i18n="ok_title">تم تأكيد موعدك</h3>
+            <p id="okText"></p>
           </section>
         </div>
       </div>
@@ -626,21 +617,51 @@
   </div>
 </dialog>
 
-<!-- Calendly widget script -->
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
 <script>
 (() => {
 'use strict';
 
 /* ===== الإعدادات ===== */
 const CONFIG = {
-  SHEET_ENDPOINT: "https://script.google.com/macros/s/AKfycbymHxc7-kPzXJ0unDZC2oob1MC3OGi-rq6P1jJShsF8n8Nkj4lU06h2eF71I764qiI/exec",
-  CALENDLY_URL: "https://calendly.com/-darflow/30min",
-  SEND_TIMEOUT_MS: 15000,
+  API_URL: "https://script.google.com/macros/s/AKfycbymHxc7-kPzXJ0unDZC2oob1MC3OGi-rq6P1jJShsF8n8Nkj4lU06h2eF71I764qiI/exec",
+  TZ: "Africa/Casablanca",
+  TIMEOUT_MS: 20000,
+  AVAIL_TTL_MS: 30000,
+  MAX_DAYS_AHEAD: 60,
   VIDEO_FAST_SECONDS: 3,
   VIDEO_FAST_RATE: 1.6
 };
+
+/* قيم الجدول يجب أن تطابق قيم Apps Script تماماً */
+const CITIES = [
+  ["Casablanca", "الدار البيضاء", "Casablanca"], ["Rabat", "الرباط", "Rabat"],
+  ["Marrakech", "مراكش", "Marrakesh"], ["Tanger", "طنجة", "Tangier"], ["Fès", "فاس", "Fez"],
+  ["Agadir", "أكادير", "Agadir"], ["Salé", "سلا", "Salé"], ["Témara", "تمارة", "Temara"],
+  ["Kénitra", "القنيطرة", "Kenitra"], ["Meknès", "مكناس", "Meknes"], ["Oujda", "وجدة", "Oujda"],
+  ["Tétouan", "تطوان", "Tetouan"], ["Mohammedia", "المحمدية", "Mohammedia"],
+  ["El Jadida", "الجديدة", "El Jadida"], ["Nador", "الناظور", "Nador"],
+  ["Béni Mellal", "بني ملال", "Beni Mellal"], ["Safi", "آسفي", "Safi"], ["Khouribga", "خريبكة", "Khouribga"],
+  ["Settat", "سطات", "Settat"], ["Berrechid", "برشيد", "Berrechid"], ["Larache", "العرائش", "Larache"],
+  ["Berkane", "بركان", "Berkane"], ["Essaouira", "الصويرة", "Essaouira"], ["Ouarzazate", "ورزازات", "Ouarzazate"],
+  ["Laâyoune", "العيون", "Laayoune"], ["Dakhla", "الداخلة", "Dakhla"], ["Al Hoceïma", "الحسيمة", "Al Hoceima"],
+  ["Taza", "تازة", "Taza"], ["Khémisset", "الخميسات", "Khemisset"], ["Errachidia", "الراشيدية", "Errachidia"],
+  ["Guelmim", "كلميم", "Guelmim"], ["Ifrane", "إفران", "Ifrane"], ["Chefchaouen", "شفشاون", "Chefchaouen"],
+  ["Asilah", "أصيلة", "Asilah"], ["Fnideq", "الفنيدق", "Fnideq"], ["Skhirat", "الصخيرات", "Skhirat"],
+  ["Bouznika", "بوزنيقة", "Bouznika"], ["Benslimane", "بنسليمان", "Benslimane"], ["Taroudant", "تارودانت", "Taroudant"],
+  ["Tiznit", "تيزنيت", "Tiznit"], ["Inezgane", "إنزكان", "Inezgane"], ["Autre", "مدينة أخرى", "Other"]
+];
+const TEAM_SIZES = [
+  { v: "1 à 3", k: "o_team1" }, { v: "4 à 10", k: "o_team2" }, { v: "Plus de 10", k: "o_team3" }
+];
+const DEMAND_LEVELS = [
+  { v: "Moins de 100", k: "o_dem1" }, { v: "100 à 500", k: "o_dem2" },
+  { v: "500 à 1000", k: "o_dem3" }, { v: "Plus de 1000", k: "o_dem4" }
+];
+const PAINS = [
+  { v: "Réponses trop lentes", k: "p1" }, { v: "Prospects perdus sans suivi", k: "p2" },
+  { v: "Visites difficiles à organiser", k: "p3" }, { v: "Informations dispersées", k: "p4" },
+  { v: "Manque de rapports", k: "p5" }
+];
 
 /* ===== الترجمات ===== */
 const T = {
@@ -653,6 +674,7 @@ const T = {
     demo_title: 'اكتشف كيف يعمل النظام <span class="gold">بذكاء وفعالية</span>',
     video_heading: "شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة",
     video_overlay: "شاهد الفيديو حتى النهاية لفتح نموذج الاستشارة",
+    video_play: "تشغيل الفيديو", video_pause: "إيقاف مؤقت", video_replay: "إعادة المشاهدة",
     feat_eyebrow: "نظام متكامل", feat_title: "كل خطوة محسوبة ليحقق فريقك مبيعات أكثر",
     f1t: "استجابة فورية على مدار الساعة", f1p: "يتلقى العميل رداً سريعاً حتى خارج أوقات العمل، دون انتظار رد الفريق.",
     f2t: "فرز العملاء وتصنيفهم", f2p: "تصنيف العملاء وفق الميزانية ونوع العقار والاحتياجات ومدى الاستعداد للشراء.",
@@ -667,12 +689,14 @@ const T = {
     s3t: "متابعة النظام", s3p: "نتابع أداء النظام ونعمل على تحسينه بما يتناسب مع احتياجات وكالتك.",
     book_eyebrow: "جلسة استشارية مجانية", book_title: "اكتشف كيف يمكن للنظام تطوير أداء وكالتك",
     book_eyebrow2: "استشارة مجانية", book_aside_title: "نفهم وكالتك قبل أي شيء",
-    book_lead: "أجب عن بعض الأسئلة، ثم اختر الموعد الذي يناسبك. سنتواصل معك لتأكيد التفاصيل.",
+    book_lead: "أجب عن بعض الأسئلة، ثم اختر الموعد الذي يناسبك.",
     bb1: "تحليل سريع لطريقة استقبال طلبات وكالتك", bb2: "تحديد أهم نقاط الضياع في المبيعات",
     bb3: "اقتراح نظام مناسب لحجمك وميزانيتك", bb4: "بدون التزام، والاستشارة مجانية بالكامل",
     meta_duration: "المدة", meta_duration_v: "30 دقيقة", meta_tz: "التوقيت", meta_mode: "الطريقة", meta_mode_v: "مكالمة فيديو",
-    st_info: "معلوماتك", st_slot: "الموعد",
+    st1: "معلوماتك", st2: "الموعد", st3: "المراجعة",
     s1_title: "أخبرنا عن وكالتك", s1_sub: "تساعدنا هذه المعلومات على إعداد استشارة مناسبة لاحتياجاتك.",
+    s2_title: "اختر الموعد المناسب لك", s2_sub: "يمكنك اختيار الأيام والساعات المتاحة فقط.",
+    s3_title: "راجع معلوماتك", s3_sub: "تأكد من المعلومات قبل تأكيد الموعد.",
     f_name: "الاسم الكامل *", f_name_ph: "الاسم الكامل",
     f_phone: "رقم الواتساب *",
     f_agency: "اسم الوكالة *", f_agency_ph: "اسم وكالتك",
@@ -682,16 +706,30 @@ const T = {
     o_dem1: "أقل من 100", o_dem2: "من 100 إلى 500", o_dem3: "من 500 إلى 1000", o_dem4: "أكثر من 1000",
     f_pains: "ما المشكل الذي يزعجك أكثر؟ *",
     p1: "بطء الرد على الزبناء", p2: "ضياع الزبناء دون متابعة", p3: "صعوبة تنظيم المعاينات", p4: "معلومات مبعثرة", p5: "غياب التقارير",
-    f_email: "البريد الإلكتروني (اختياري)",
-    required: "* الحقول الإلزامية", next: "التالي: اختيار الموعد", sending: "جارٍ الإرسال…",
-    s2_title: "اختر الموعد المناسب لك", s2_sub: "اختر يوماً ووقتاً متاحين، وسيصلك تأكيد الموعد مباشرة.",
-    cal_loading: "جارٍ تحميل التقويم…", cal_fallback: "إذا لم يظهر التقويم،", cal_link: "افتح صفحة الحجز في نافذة جديدة",
-    back: "رجوع للمعلومات",
+    f_need: "ما حاجتك الأساسية من النظام؟", f_need_ph: "مثلاً: الرد السريع على الزبناء القادمين من الإعلانات...",
+    f_email: "البريد الإلكتروني (اختياري)", f_email_ph: "name@example.com",
+    required: "* الحقول الإلزامية",
+    btn_next: "التالي", btn_back: "رجوع", btn_submit: "تأكيد الموعد", btn_sending: "جارٍ التأكيد…",
+    cal_loading: "جارٍ تحميل المواعيد…", cal_none: "لا توجد مواعيد متاحة في هذا اليوم.",
+    cal_avail: "متاح", cal_busy: "محجوز", cal_past: "غير متاح",
+    cal_pick_day: "اختر يوماً من التقويم أولاً.", cal_pick_time: "اختر الساعة المناسبة.",
+    cal_prev: "الشهر السابق", cal_next: "الشهر التالي",
+    r_name: "الاسم", r_phone: "واتساب", r_agency: "الوكالة", r_city: "المدينة", r_team: "الفريق",
+    r_demand: "الطلبات الشهرية", r_pains: "المشاكل", r_need: "الحاجة", r_email: "البريد",
+    r_date: "تاريخ الموعد", r_time: "الساعة", r_none: "—",
+    e_required: "أكمل هذا الحقل", e_phone: "المرجو إدخال رقم واتساب مغربي صحيح (مثال: 06XXXXXXXX)",
+    e_choose: "اختر جواباً", e_email: "البريد الإلكتروني غير صحيح",
+    e_need_long: "النص طويل جداً (500 حرف كحد أقصى)",
+    e_form: "أكمل الحقول المشار إليها ثم أعد المحاولة.",
+    e_pick_date: "اختر يوماً من التقويم.", e_pick_time: "اختر ساعة الموعد.",
+    e_slot_taken: "هذه الساعة لم تعد متاحة. اختر ساعة أخرى.",
+    e_invalid: "بعض المعلومات غير صحيحة. راجعها ثم أعد المحاولة.",
+    e_busy: "النظام مشغول حالياً. حاول مرة أخرى بعد لحظات.",
+    e_server: "حدث خطأ أثناء تأكيد الموعد. لم يتم تأكيد الموعد، حاول مرة أخرى.",
+    e_network: "تعذّر الاتصال بالخادم. تحقق من الإنترنت ثم اضغط تأكيد مرة أخرى.",
+    e_slots: "تعذّر تحميل المواعيد. اختر اليوم مرة أخرى.",
     ok_title: "تم تأكيد موعدك",
-    ok_text: "ستصلك رسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك على واتساب.",
-    err_req: "أكمل هذا الحقل", err_choose: "اختر جواباً", err_phone: "المرجو إدخال رقم واتساب مغربي صحيح",
-    err_email: "البريد الإلكتروني غير صحيح", err_form: "أكمل الحقول المشار إليها ثم أعد المحاولة.",
-    err_send: "تعذّر الإرسال. تحقق من اتصالك بالإنترنت وأعد المحاولة.",
+    ok_text: "موعدك يوم {date} على الساعة {time}. سنتواصل معك على واتساب لتأكيد التفاصيل.",
     rights: "جميع الحقوق محفوظة.", footer_line: "أنظمة ذكية للوكالات العقارية بالمغرب",
     close: "إغلاق",
     about_title: "DarFlow — من نحن؟",
@@ -713,6 +751,7 @@ const T = {
     demo_title: 'Découvrez un système <span class="gold">intelligent et efficace</span>',
     video_heading: "Découvrez comment une demande devient une opportunité organisée",
     video_overlay: "Regardez la vidéo jusqu’à la fin pour accéder au formulaire",
+    video_play: "Lancer la vidéo", video_pause: "Mettre en pause", video_replay: "Revoir la vidéo",
     feat_eyebrow: "Solution complète", feat_title: "Chaque étape aide votre équipe à mieux vendre",
     f1t: "Réponse immédiate 24h/24", f1p: "Les prospects reçoivent une réponse rapide, même en dehors des heures de travail.",
     f2t: "Qualification et score", f2p: "Classez les prospects selon le budget, le type de bien, les besoins et leur préparation à l’achat.",
@@ -727,12 +766,14 @@ const T = {
     s3t: "Suivre et améliorer", s3p: "Nous suivons les performances et améliorons le système selon vos besoins.",
     book_eyebrow: "Consultation gratuite", book_title: "Découvrez comment améliorer les performances de votre agence",
     book_eyebrow2: "Consultation gratuite", book_aside_title: "Nous comprenons votre agence avant tout",
-    book_lead: "Répondez à quelques questions, puis choisissez le créneau qui vous convient. Nous confirmerons les détails avec vous.",
+    book_lead: "Répondez à quelques questions, puis choisissez le créneau qui vous convient.",
     bb1: "Analyse rapide de la manière dont votre agence reçoit les demandes", bb2: "Identification des principales pertes de ventes",
     bb3: "Proposition d’un système adapté à votre taille et à votre budget", bb4: "Sans engagement, consultation entièrement gratuite",
     meta_duration: "Durée", meta_duration_v: "30 min", meta_tz: "Fuseau", meta_mode: "Format", meta_mode_v: "Visioconférence",
-    st_info: "Vos infos", st_slot: "Créneau",
+    st1: "Vos infos", st2: "Créneau", st3: "Vérification",
     s1_title: "Parlez-nous de votre agence", s1_sub: "Ces informations nous aident à préparer une consultation adaptée.",
+    s2_title: "Choisissez votre créneau", s2_sub: "Seuls les créneaux disponibles peuvent être sélectionnés.",
+    s3_title: "Vérifiez vos informations", s3_sub: "Vérifiez les détails avant de confirmer votre rendez-vous.",
     f_name: "Nom complet *", f_name_ph: "Nom complet",
     f_phone: "Numéro WhatsApp *",
     f_agency: "Nom de l’agence *", f_agency_ph: "Nom de votre agence",
@@ -742,16 +783,30 @@ const T = {
     o_dem1: "Moins de 100", o_dem2: "100 à 500", o_dem3: "500 à 1 000", o_dem4: "Plus de 1 000",
     f_pains: "Quel problème vous pèse le plus ? *",
     p1: "Réponses trop lentes", p2: "Prospects perdus sans suivi", p3: "Visites difficiles à organiser", p4: "Informations dispersées", p5: "Manque de rapports",
-    f_email: "E-mail (facultatif)",
-    required: "* Champs obligatoires", next: "Suivant : choisir un créneau", sending: "Envoi en cours…",
-    s2_title: "Choisissez votre créneau", s2_sub: "Sélectionnez un jour et une heure disponibles, la confirmation vous parviendra aussitôt.",
-    cal_loading: "Chargement du calendrier…", cal_fallback: "Si le calendrier ne s’affiche pas,", cal_link: "ouvrez la page de réservation dans un nouvel onglet",
-    back: "Retour aux informations",
+    f_need: "Quel est votre besoin principal ?", f_need_ph: "Ex. : répondre plus vite aux demandes issues des annonces...",
+    f_email: "E-mail (facultatif)", f_email_ph: "nom@exemple.com",
+    required: "* Champs obligatoires",
+    btn_next: "Suivant", btn_back: "Retour", btn_submit: "Confirmer mon rendez-vous", btn_sending: "Confirmation en cours…",
+    cal_loading: "Chargement des créneaux…", cal_none: "Aucun créneau disponible ce jour-là.",
+    cal_avail: "Disponible", cal_busy: "Indisponible", cal_past: "Indisponible",
+    cal_pick_day: "Choisissez d’abord un jour dans le calendrier.", cal_pick_time: "Choisissez l’heure qui vous convient.",
+    cal_prev: "Mois précédent", cal_next: "Mois suivant",
+    r_name: "Nom", r_phone: "WhatsApp", r_agency: "Agence", r_city: "Ville", r_team: "Équipe",
+    r_demand: "Demandes / mois", r_pains: "Problèmes", r_need: "Besoin", r_email: "E-mail",
+    r_date: "Date du rendez-vous", r_time: "Heure", r_none: "—",
+    e_required: "Complétez ce champ", e_phone: "Saisissez un numéro WhatsApp marocain valide (ex. 06XXXXXXXX)",
+    e_choose: "Choisissez une réponse", e_email: "Adresse e-mail invalide",
+    e_need_long: "Texte trop long (500 caractères maximum)",
+    e_form: "Complétez les champs signalés puis réessayez.",
+    e_pick_date: "Choisissez une date dans le calendrier.", e_pick_time: "Choisissez un créneau.",
+    e_slot_taken: "Ce créneau vient d’être réservé ou n’est plus disponible. Choisissez-en un autre.",
+    e_invalid: "Certaines informations sont invalides. Vérifiez le formulaire puis réessayez.",
+    e_busy: "Le système est occupé. Réessayez dans quelques instants.",
+    e_server: "Une erreur est survenue. Le rendez-vous n’a pas été confirmé, réessayez.",
+    e_network: "Connexion impossible. Vérifiez votre connexion puis réessayez.",
+    e_slots: "Impossible de charger les créneaux. Sélectionnez à nouveau le jour.",
     ok_title: "Votre rendez-vous est confirmé",
-    ok_text: "Vous recevrez un e-mail de confirmation, et nous vous contacterons sur WhatsApp.",
-    err_req: "Complétez ce champ", err_choose: "Choisissez une réponse", err_phone: "Veuillez saisir un numéro WhatsApp marocain valide",
-    err_email: "Adresse e-mail invalide", err_form: "Complétez les champs signalés puis réessayez.",
-    err_send: "Envoi impossible. Vérifiez votre connexion et réessayez.",
+    ok_text: "Rendez-vous le {date} à {time}. Nous vous contacterons sur WhatsApp pour confirmer les détails.",
     rights: "Tous droits réservés.", footer_line: "Systèmes intelligents pour agences immobilières au Maroc",
     close: "Fermer",
     about_title: "DarFlow — À propos",
@@ -773,6 +828,7 @@ const T = {
     demo_title: 'Discover a system built for <span class="gold">smarter real estate work</span>',
     video_heading: "See how a customer inquiry becomes an organized sales opportunity",
     video_overlay: "Watch the video to the end to unlock the consultation form",
+    video_play: "Play video", video_pause: "Pause", video_replay: "Watch again",
     feat_eyebrow: "Integrated system", feat_title: "Every step helps your team sell smarter",
     f1t: "Instant 24/7 responses", f1p: "Prospects receive a quick reply, even outside business hours.",
     f2t: "Lead scoring", f2p: "Classify prospects by budget, property type, needs and readiness to buy.",
@@ -787,12 +843,14 @@ const T = {
     s3t: "Monitor and improve", s3p: "We monitor performance and improve the system as your needs evolve.",
     book_eyebrow: "Free consultation", book_title: "Discover how to improve your agency’s performance",
     book_eyebrow2: "Free consultation", book_aside_title: "We understand your agency first",
-    book_lead: "Answer a few questions, then pick the time that suits you. We’ll confirm the details with you.",
+    book_lead: "Answer a few questions, then pick the time that suits you.",
     bb1: "A quick review of how your agency handles incoming requests", bb2: "Identifying your main sales leaks",
     bb3: "A system proposal sized to your team and budget", bb4: "No commitment, completely free",
     meta_duration: "Duration", meta_duration_v: "30 min", meta_tz: "Time zone", meta_mode: "Format", meta_mode_v: "Video call",
-    st_info: "Your details", st_slot: "Time slot",
+    st1: "Your details", st2: "Time slot", st3: "Review",
     s1_title: "Tell us about your agency", s1_sub: "These details help us prepare a useful consultation.",
+    s2_title: "Choose your time slot", s2_sub: "You can only select days and times that are available.",
+    s3_title: "Review your details", s3_sub: "Check the information before confirming your appointment.",
     f_name: "Full name *", f_name_ph: "Full name",
     f_phone: "WhatsApp number *",
     f_agency: "Agency name *", f_agency_ph: "Your agency name",
@@ -802,16 +860,30 @@ const T = {
     o_dem1: "Fewer than 100", o_dem2: "100 to 500", o_dem3: "500 to 1,000", o_dem4: "More than 1,000",
     f_pains: "What bothers you the most? *",
     p1: "Slow replies to clients", p2: "Leads lost without follow-up", p3: "Hard to organize viewings", p4: "Scattered information", p5: "No reporting",
-    f_email: "Email (optional)",
-    required: "* Required fields", next: "Next: choose a time", sending: "Sending…",
-    s2_title: "Choose your time slot", s2_sub: "Pick an available day and time. You’ll get the confirmation right away.",
-    cal_loading: "Loading the calendar…", cal_fallback: "If the calendar doesn’t appear,", cal_link: "open the booking page in a new tab",
-    back: "Back to details",
+    f_need: "What is your main need from the system?", f_need_ph: "E.g. faster replies to leads from ads...",
+    f_email: "Email (optional)", f_email_ph: "name@example.com",
+    required: "* Required fields",
+    btn_next: "Next", btn_back: "Back", btn_submit: "Confirm my appointment", btn_sending: "Confirming…",
+    cal_loading: "Loading time slots…", cal_none: "No time slots available on this day.",
+    cal_avail: "Available", cal_busy: "Unavailable", cal_past: "Unavailable",
+    cal_pick_day: "Choose a day from the calendar first.", cal_pick_time: "Choose the time that suits you.",
+    cal_prev: "Previous month", cal_next: "Next month",
+    r_name: "Name", r_phone: "WhatsApp", r_agency: "Agency", r_city: "City", r_team: "Team",
+    r_demand: "Monthly requests", r_pains: "Challenges", r_need: "Need", r_email: "Email",
+    r_date: "Appointment date", r_time: "Time", r_none: "—",
+    e_required: "Please fill in this field", e_phone: "Please enter a valid Moroccan WhatsApp number (e.g. 06XXXXXXXX)",
+    e_choose: "Please choose an option", e_email: "Invalid email address",
+    e_need_long: "Text is too long (500 characters maximum)",
+    e_form: "Please complete the highlighted fields and try again.",
+    e_pick_date: "Please choose a day from the calendar.", e_pick_time: "Please choose a time slot.",
+    e_slot_taken: "This time slot was just booked or is no longer available. Please choose another one.",
+    e_invalid: "Some information is invalid. Please review the form and try again.",
+    e_busy: "The system is busy. Please try again in a moment.",
+    e_server: "Something went wrong. Your appointment was not confirmed, please try again.",
+    e_network: "Could not reach the server. Check your connection and press confirm again.",
+    e_slots: "Could not load time slots. Please select the day again.",
     ok_title: "Your appointment is confirmed",
-    ok_text: "You’ll receive a confirmation email, and we’ll contact you on WhatsApp.",
-    err_req: "Please fill in this field", err_choose: "Please choose an option", err_phone: "Please enter a valid Moroccan WhatsApp number",
-    err_email: "Invalid email address", err_form: "Please complete the highlighted fields and try again.",
-    err_send: "Could not send. Check your connection and try again.",
+    ok_text: "Your appointment is on {date} at {time}. We will contact you on WhatsApp to confirm the details.",
     rights: "All rights reserved.", footer_line: "Smart systems for real estate agencies in Morocco",
     close: "Close",
     about_title: "DarFlow — About us",
@@ -826,40 +898,114 @@ const T = {
   }
 };
 
-/* المدن: [فرنسية (تُحفظ في الجدول), عربية, إنجليزية] */
-const CITIES = [
-  ["Casablanca", "الدار البيضاء", "Casablanca"], ["Rabat", "الرباط", "Rabat"],
-  ["Marrakech", "مراكش", "Marrakesh"], ["Tanger", "طنجة", "Tangier"], ["Fès", "فاس", "Fez"],
-  ["Agadir", "أكادير", "Agadir"], ["Salé", "سلا", "Salé"], ["Témara", "تمارة", "Temara"],
-  ["Kénitra", "القنيطرة", "Kenitra"], ["Meknès", "مكناس", "Meknes"], ["Oujda", "وجدة", "Oujda"],
-  ["Tétouan", "تطوان", "Tetouan"], ["Mohammedia", "المحمدية", "Mohammedia"],
-  ["El Jadida", "الجديدة", "El Jadida"], ["Nador", "الناظور", "Nador"],
-  ["Béni Mellal", "بني ملال", "Beni Mellal"], ["Safi", "آسفي", "Safi"], ["Khouribga", "خريبكة", "Khouribga"],
-  ["Settat", "سطات", "Settat"], ["Berrechid", "برشيد", "Berrechid"], ["Larache", "العرائش", "Larache"],
-  ["Berkane", "بركان", "Berkane"], ["Essaouira", "الصويرة", "Essaouira"], ["Ouarzazate", "ورزازات", "Ouarzazate"],
-  ["Laâyoune", "العيون", "Laayoune"], ["Dakhla", "الداخلة", "Dakhla"], ["Al Hoceïma", "الحسيمة", "Al Hoceima"],
-  ["Taza", "تازة", "Taza"], ["Khémisset", "الخميسات", "Khemisset"], ["Errachidia", "الراشيدية", "Errachidia"],
-  ["Guelmim", "كلميم", "Guelmim"], ["Ifrane", "إفران", "Ifrane"], ["Chefchaouen", "شفشاون", "Chefchaouen"],
-  ["Asilah", "أصيلة", "Asilah"], ["Fnideq", "الفنيدق", "Fnideq"], ["Skhirat", "الصخيرات", "Skhirat"],
-  ["Bouznika", "بوزنيقة", "Bouznika"], ["Benslimane", "بنسليمان", "Benslimane"], ["Taroudant", "تارودانت", "Taroudant"],
-  ["Tiznit", "تيزنيت", "Tiznit"], ["Inezgane", "إنزكان", "Inezgane"], ["Autre", "مدينة أخرى", "Other"]
-];
-
-/* ===== أدوات ===== */
+/* ===== أدوات عامة ===== */
 const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad = n => String(n).padStart(2, "0");
+const isoOf = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
 
 let lang = "ar";
-let lead = null;
+let currentStep = 1;
+let bannerKey = "";
+let slotHintKey = "cal_pick_day";
+let submitting = false;
 let booked = false;
-let busy = false;
-let loadingTimer = null;
-let calendlyPoll = null;
+let successData = null;
+const slotCache = new Map();
+let slotToken = 0;
+const sel = { date: "", time: "", requestId: "" };
+const view = { y: 0, m: 0 };
 
-const t = key => (T[lang] && T[lang][key]) ?? T.ar[key] ?? key;
+const t = key => {
+  if (T[lang] && T[lang][key] !== undefined) return T[lang][key];
+  if (T.ar[key] !== undefined) return T.ar[key];
+  return key;
+};
+const locale = () => (lang === "ar" ? "ar-MA-u-nu-latn" : lang === "fr" ? "fr-FR" : "en-GB");
+
+function toLatin(s) {
+  return String(s)
+    .replace(/[\u0660-\u0669]/g, c => String(c.charCodeAt(0) - 0x0660))
+    .replace(/[\u06F0-\u06F9]/g, c => String(c.charCodeAt(0) - 0x06F0));
+}
+
+function casaToday() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: CONFIG.TZ, year: "numeric", month: "2-digit", day: "2-digit"
+  }).formatToParts(new Date());
+  const get = type => Number(parts.find(p => p.type === type).value);
+  return { y: get("year"), m: get("month"), d: get("day") };
+}
+function todayIso() { const n = casaToday(); return isoOf(n.y, n.m, n.d); }
+function maxIso() {
+  const n = casaToday();
+  return new Date(Date.UTC(n.y, n.m - 1, n.d) + CONFIG.MAX_DAYS_AHEAD * 86400000).toISOString().slice(0, 10);
+}
+
+function displayDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Intl.DateTimeFormat(locale(), {
+    weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: CONFIG.TZ
+  }).format(new Date(Date.UTC(y, m - 1, d, 12)));
+}
+
+function newId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") return window.crypto.randomUUID();
+  return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12) + "-" + Math.random().toString(36).slice(2, 10);
+}
+
+/* ===== الهاتف ===== */
+function cleanPhone(raw) { return toLatin(String(raw || "")).replace(/[\s().\-]/g, ""); }
+function isMoroccanPhone(raw) {
+  return /^(0[67]\d{8}|\+212[67]\d{8}|00212[67]\d{8}|212[67]\d{8})$/.test(cleanPhone(raw));
+}
+function normalizePhone(raw) {
+  const p = cleanPhone(raw);
+  if (/^0[67]/.test(p)) return "+212" + p.slice(1);
+  if (p.startsWith("+212")) return p;
+  if (p.startsWith("00212")) return "+" + p.slice(2);
+  return "+" + p;
+}
 
 /* ===== اللغة ===== */
+function labelOf(list, value) {
+  const item = list.find(x => x.v === value);
+  return item ? t(item.k) : value;
+}
+function cityLabel(value) {
+  const c = CITIES.find(x => x[0] === value);
+  if (!c) return value;
+  return c[lang === "ar" ? 1 : lang === "en" ? 2 : 0];
+}
+
+function fillSelect(select, items, placeholderKey) {
+  const current = select.value;
+  select.innerHTML = "";
+  const ph = document.createElement("option");
+  ph.value = "";
+  ph.textContent = t(placeholderKey);
+  select.appendChild(ph);
+  items.forEach(it => {
+    const o = document.createElement("option");
+    o.value = it.v;
+    o.textContent = it.label;
+    select.appendChild(o);
+  });
+  select.value = current;
+}
+
+function buildSelects() {
+  fillSelect($("#city"), CITIES.map(c => ({ v: c[0], label: c[lang === "ar" ? 1 : lang === "en" ? 2 : 0] })), "f_city_ph");
+  fillSelect($("#team"), TEAM_SIZES.map(x => ({ v: x.v, label: t(x.k) })), "f_pick");
+  fillSelect($("#demand"), DEMAND_LEVELS.map(x => ({ v: x.v, label: t(x.k) })), "f_pick");
+}
+
+function setSlotHint(key) {
+  slotHintKey = key;
+  $("#slotHint").textContent = t(key);
+}
+
 function setLang(next) {
   lang = T[next] ? next : "ar";
   const html = document.documentElement;
@@ -875,34 +1021,17 @@ function setLang(next) {
   $$("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
   $$(".err[data-key]").forEach(el => { el.textContent = el.dataset.key ? t(el.dataset.key) : ""; });
 
-  buildCityOptions();
+  buildSelects();
   $("#langSelect").value = lang;
+  $("#slotHint").textContent = t(slotHintKey);
+  if (currentStep === 2) renderCalendar();
+  if (currentStep === 3) renderReview();
+  if (bannerKey) showBanner(bannerKey);
+  if (booked && successData) renderSuccessText(successData);
   updatePlayButton();
-
-  if (!$("#slotStep").classList.contains("hidden") && !booked) mountCalendly();
 }
 
-function buildCityOptions() {
-  const select = $("#city");
-  const current = select.value;
-  const idx = lang === "ar" ? 1 : lang === "fr" ? 0 : 2;
-  select.innerHTML = "";
-
-  const placeholder = document.createElement("option");
-  placeholder.value = "";
-  placeholder.textContent = t("f_city_ph");
-  select.appendChild(placeholder);
-
-  CITIES.forEach(c => {
-    const opt = document.createElement("option");
-    opt.value = c[0];
-    opt.textContent = c[idx];
-    select.appendChild(opt);
-  });
-  select.value = current;
-}
-
-/* ===== العرض التوضيحي ===== */
+/* ===== الفيديو ===== */
 const video = $("#demoVideo");
 const stage = $("#videoStage");
 const playBtn = $("#playDemo");
@@ -912,38 +1041,32 @@ let fastDone = false;
 let finished = false;
 
 function updatePlayButton() {
-  const key = finished ? "video_replay" : (!video.paused ? "video_pause" : "video_play");
-  playBtn.textContent = finished ? "↻" : (!video.paused ? "Ⅱ" : "▶");
+  const key = finished ? "video_replay" : (video.paused ? "video_play" : "video_pause");
+  playBtn.textContent = finished ? "↻" : (video.paused ? "▶" : "Ⅱ");
   playBtn.setAttribute("aria-label", t(key));
 }
 
 function togglePlay() {
-  if (!video.paused) {
-    video.pause();
-    return;
-  }
-  if (video.ended || finished) {
+  if (!video.paused) { video.pause(); return; }
+  if (finished || video.ended) {
     video.currentTime = 0;
     maxWatched = 0;
     fastDone = false;
     finished = false;
   }
   video.playbackRate = fastDone ? 1 : CONFIG.VIDEO_FAST_RATE;
-  video.play().catch(() => {});
+  const p = video.play();
+  if (p && typeof p.catch === "function") p.catch(() => {});
 }
 
-playBtn.addEventListener("click", togglePlay);
-stage.addEventListener("click", e => {
-  if (e.target === playBtn) return;
-  togglePlay();
-});
+playBtn.addEventListener("click", e => { e.stopPropagation(); togglePlay(); });
+stage.addEventListener("click", togglePlay);
 
 video.addEventListener("play", () => {
   stage.classList.add("playing");
   $("#videoOverlay").classList.add("hidden");
   updatePlayButton();
 });
-
 video.addEventListener("pause", () => {
   if (!video.ended) {
     stage.classList.remove("playing");
@@ -951,23 +1074,18 @@ video.addEventListener("pause", () => {
   }
   updatePlayButton();
 });
-
 video.addEventListener("timeupdate", () => {
   if (!fastDone && video.currentTime >= CONFIG.VIDEO_FAST_SECONDS) {
     video.playbackRate = 1;
     fastDone = true;
   }
   if (!video.seeking) maxWatched = Math.max(maxWatched, video.currentTime);
-  if (video.duration > 0) {
-    progressBar.style.width = (video.currentTime / video.duration * 100) + "%";
-  }
+  if (video.duration > 0) progressBar.style.width = (video.currentTime / video.duration * 100) + "%";
 });
-
-// منع تقديم الفيديو للأمام: لازم يتفرج عليه كامل
+// منع تقديم الفيديو للأمام
 video.addEventListener("seeking", () => {
   if (video.currentTime > maxWatched + 1) video.currentTime = maxWatched;
 });
-
 video.addEventListener("ended", () => {
   finished = true;
   stage.classList.remove("playing");
@@ -976,77 +1094,90 @@ video.addEventListener("ended", () => {
   enterBookingMode();
 });
 
-/* بعد انتهاء الفيديو: تبقى واجهة الحجز فقط */
 function enterBookingMode() {
   const booking = $("#booking");
   if (booking.classList.contains("revealed")) return;
   booking.classList.add("revealed");
   booking.setAttribute("aria-hidden", "false");
   document.body.classList.add("booking-mode");
-  window.scrollTo({ top: 0, behavior: "auto" });
   booking.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
-/* ===== التحقق ===== */
-function toLatinDigits(s) {
-  return s.replace(/[\u0660-\u0669\u06F0-\u06F9]/g, d => {
-    const c = d.charCodeAt(0);
-    return String(c >= 0x06F0 ? c - 0x06F0 : c - 0x0660);
+/* ===== التنقل بين المراحل ===== */
+function goStep(n, scroll = true) {
+  currentStep = n;
+  [1, 2, 3].forEach(i => $("#step" + i).classList.toggle("hidden", i !== n));
+  $$(".stp").forEach(el => {
+    const s = Number(el.dataset.step);
+    el.classList.toggle("is-active", s === n);
+    el.classList.toggle("is-done", s < n);
+    if (s === n) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
   });
+
+  if (n === 2) {
+    if (!sel.date) setSlotHint("cal_pick_day");
+    renderCalendar();
+  }
+  if (n === 3) renderReview();
+
+  if (scroll) {
+    const target = $("#step" + n);
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    const h = target.querySelector("h3");
+    if (h) h.focus({ preventScroll: true });
+  }
 }
 
-function cleanPhone(raw) {
-  return toLatinDigits(String(raw).trim()).replace(/[\s().\-]/g, "");
+function showBanner(key) {
+  bannerKey = key;
+  const b = $("#banner");
+  b.textContent = t(key);
+  b.classList.remove("hidden");
+}
+function hideBanner() {
+  bannerKey = "";
+  const b = $("#banner");
+  b.textContent = "";
+  b.classList.add("hidden");
 }
 
-function isMoroccanPhone(raw) {
-  const p = cleanPhone(raw);
-  return /^0[67]\d{8}$/.test(p) || /^\+212[67]\d{8}$/.test(p) ||
-         /^00212[67]\d{8}$/.test(p) || /^212[67]\d{8}$/.test(p);
-}
+/* ===== التحقق من المرحلة 1 ===== */
+const FIELD_IDS = ["name", "phone", "agency", "city", "team", "demand", "need", "email"];
 
-function normalizePhone(raw) {
-  const p = cleanPhone(raw);
-  if (p.startsWith("+212")) return p;
-  if (p.startsWith("00212")) return "+" + p.slice(2);
-  if (p.startsWith("212")) return "+" + p;
-  return "+212" + p.slice(1);
-}
-
-function setError(id, key) {
-  const el = $("#err-" + id);
-  if (!el) return;
-  el.dataset.key = key || "";
-  el.textContent = key ? t(key) : "";
-  const input = $("#" + id);
+function setFieldError(id, key) {
+  const input = document.getElementById(id);
+  const err = document.getElementById("err-" + id);
+  if (err) {
+    err.dataset.key = key || "";
+    err.textContent = key ? t(key) : "";
+  }
   if (input) input.setAttribute("aria-invalid", key ? "true" : "false");
 }
 
 function validateStep1() {
   let first = null;
-  const mark = (id, key, target) => {
-    setError(id, key);
-    if (key && !first) first = target || $("#" + id);
+  const check = (id, key, el) => {
+    setFieldError(id, key);
+    if (key && !first) first = el || document.getElementById(id);
   };
 
-  mark("name", $("#name").value.trim() ? "" : "err_req");
-  mark("agency", $("#agency").value.trim() ? "" : "err_req");
-  mark("city", $("#city").value ? "" : "err_choose");
-  mark("team", $("#team").value ? "" : "err_choose");
-  mark("demand", $("#demand").value ? "" : "err_choose");
-  mark("phone", isMoroccanPhone($("#phone").value) ? "" : "err_phone");
-
+  check("name", $("#name").value.trim().length >= 2 ? "" : "e_required");
+  check("phone", isMoroccanPhone($("#phone").value) ? "" : "e_phone");
+  check("agency", $("#agency").value.trim() ? "" : "e_required");
+  check("city", $("#city").value ? "" : "e_choose");
+  check("team", $("#team").value ? "" : "e_choose");
+  check("demand", $("#demand").value ? "" : "e_choose");
+  check("need", $("#need").value.trim().length <= 500 ? "" : "e_need_long");
   const email = $("#email").value.trim();
-  mark("email", !email || $("#email").checkValidity() ? "" : "err_email");
+  check("email", !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "e_email");
 
   const pains = $$('input[name="pains"]:checked');
-  setError("pains", pains.length ? "" : "err_choose");
+  setFieldError("pains", pains.length ? "" : "e_choose");
   if (!pains.length && !first) first = $('input[name="pains"]');
-
   return first;
 }
 
-function collectLead() {
+function collectForm() {
   return {
     name: $("#name").value.trim(),
     phone: normalizePhone($("#phone").value),
@@ -1054,185 +1185,353 @@ function collectLead() {
     city: $("#city").value,
     team: $("#team").value,
     demand: $("#demand").value,
-    pains: $$('input[name="pains"]:checked').map(i => i.value).join(", "),
+    pains: $$('input[name="pains"]:checked').map(i => i.value),
+    need: $("#need").value.trim(),
     email: $("#email").value.trim()
   };
 }
 
-/* ===== الإرسال إلى Google Apps Script ===== */
-async function postToSheet(payload) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), CONFIG.SEND_TIMEOUT_MS);
+/* ===== التقويم ===== */
+function renderDow() {
+  const wrap = $("#calDow");
+  wrap.innerHTML = "";
+  for (let i = 0; i < 7; i++) {
+    const el = document.createElement("div");
+    el.className = "cal-dow";
+    // 1 يناير 2024 يوافق الاثنين
+    el.textContent = new Intl.DateTimeFormat(locale(), { weekday: "short", timeZone: "UTC" })
+      .format(new Date(Date.UTC(2024, 0, 1 + i, 12)));
+    wrap.appendChild(el);
+  }
+}
+
+function renderCalendar() {
+  renderDow();
+  const { y, m } = view;
+  $("#calTitle").textContent = new Intl.DateTimeFormat(locale(), {
+    month: "long", year: "numeric", timeZone: "UTC"
+  }).format(new Date(Date.UTC(y, m - 1, 1, 12)));
+
+  const grid = $("#calDays");
+  grid.innerHTML = "";
+  const today = todayIso();
+  const max = maxIso();
+  const offset = (new Date(Date.UTC(y, m - 1, 1, 12)).getUTCDay() + 6) % 7;
+  const days = new Date(Date.UTC(y, m, 0, 12)).getUTCDate();
+
+  for (let i = 0; i < offset; i++) grid.appendChild(document.createElement("span"));
+
+  for (let d = 1; d <= days; d++) {
+    const iso = isoOf(y, m, d);
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "day";
+    b.textContent = String(d);
+    b.dataset.date = iso;
+    b.disabled = iso < today || iso > max;
+    b.setAttribute("aria-label", displayDate(iso));
+    b.setAttribute("aria-pressed", String(iso === sel.date));
+    if (iso === today) b.classList.add("is-today");
+    grid.appendChild(b);
+  }
+
+  const now = casaToday();
+  $("#calPrev").disabled = (y === now.y && m === now.m);
+  const maxYm = max.slice(0, 7);
+  $("#calNext").disabled = isoOf(y, m, 1).slice(0, 7) >= maxYm;
+}
+
+function shiftMonth(delta) {
+  let { y, m } = view;
+  m += delta;
+  if (m < 1) { m = 12; y--; }
+  if (m > 12) { m = 1; y++; }
+  view.y = y;
+  view.m = m;
+  renderCalendar();
+}
+
+function pickDate(iso) {
+  sel.date = iso;
+  sel.time = "";
+  sel.requestId = "";
+  renderCalendar();
+  const btn = $(`#calDays button[data-date="${iso}"]`);
+  if (btn) btn.focus({ preventScroll: true });
+  loadSlots(iso, false);
+}
+
+async function getAvailability(iso, force) {
+  const cached = slotCache.get(iso);
+  if (!force && cached && Date.now() - cached.at < CONFIG.AVAIL_TTL_MS) return cached.data;
+  const data = await apiGet({ action: "availability", date: iso });
+  if (!data || !data.ok) throw Object.assign(new Error("availability"), { code: data ? data.code : "network" });
+  slotCache.set(iso, { at: Date.now(), data });
+  return data;
+}
+
+async function loadSlots(iso, force) {
+  const token = ++slotToken;
+  $("#slotBox").innerHTML = "";
+  setSlotHint("cal_loading");
   try {
-    // no-cors: المتصفح ما كيقراش الرد، لذلك الخطأ الوحيد اللي كنكشفو هو فشل الشبكة أو الـ timeout
-    await fetch(CONFIG.SHEET_ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload),
-      signal: controller.signal
-    });
+    const data = await getAvailability(iso, force);
+    if (token !== slotToken) return;
+    renderSlots(data.slots);
+  } catch (err) {
+    if (token !== slotToken) return;
+    setSlotHint("e_slots");
+  }
+}
+
+function renderSlots(slots) {
+  const box = $("#slotBox");
+  box.innerHTML = "";
+  const hasAvailable = slots.some(s => s.status === "available");
+  setSlotHint(hasAvailable ? "cal_pick_time" : "cal_none");
+  slots.forEach(s => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "slot";
+    b.textContent = s.time;
+    b.dataset.time = s.time;
+    b.disabled = s.status !== "available";
+    b.setAttribute("aria-pressed", String(s.time === sel.time));
+    if (b.disabled) {
+      b.setAttribute("aria-label", s.time + " — " + t(s.status === "busy" ? "cal_busy" : "cal_past"));
+    }
+    box.appendChild(b);
+  });
+}
+
+/* ===== المراجعة ===== */
+function renderReview() {
+  const f = collectForm();
+  const dl = $("#reviewBox");
+  dl.innerHTML = "";
+  const rows = [
+    ["r_name", f.name],
+    ["r_phone", f.phone],
+    ["r_agency", f.agency],
+    ["r_city", cityLabel(f.city)],
+    ["r_team", labelOf(TEAM_SIZES, f.team)],
+    ["r_demand", labelOf(DEMAND_LEVELS, f.demand)],
+    ["r_pains", f.pains.map(v => labelOf(PAINS, v)).join(", ")],
+    ["r_need", f.need],
+    ["r_email", f.email],
+    ["r_date", sel.date ? displayDate(sel.date) : ""],
+    ["r_time", sel.time]
+  ];
+  rows.forEach(([key, value]) => {
+    const dt = document.createElement("dt");
+    dt.textContent = t(key);
+    const dd = document.createElement("dd");
+    dd.textContent = value || t("r_none");
+    dl.append(dt, dd);
+  });
+}
+
+/* ===== الاتصال بالخادم ===== */
+async function request(url, init) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), CONFIG.TIMEOUT_MS);
+  let text;
+  try {
+    const res = await fetch(url, Object.assign({ cache: "no-store", signal: ctrl.signal }, init));
+    text = await res.text();
+  } catch (err) {
+    throw Object.assign(new Error("network"), { code: "network" });
   } finally {
     clearTimeout(timer);
   }
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    throw Object.assign(new Error("bad_response"), { code: "network" });
+  }
 }
 
-/* ===== المراحل ===== */
-function showStep(n) {
-  $("#infoForm").classList.toggle("hidden", n !== 1);
-  $("#slotStep").classList.toggle("hidden", n !== 2);
-  $$(".stp").forEach(el => {
-    const s = Number(el.dataset.step);
-    el.classList.toggle("is-active", s === n);
-    el.classList.toggle("is-done", s < n);
-    if (s === n) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
+function apiGet(params) {
+  const url = new URL(CONFIG.API_URL);
+  Object.keys(params).forEach(k => url.searchParams.set(k, params[k]));
+  return request(url.toString(), { method: "GET" });
+}
+
+function apiPost(body) {
+  return request(CONFIG.API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(body)
   });
-  const target = n === 1 ? $("#infoForm") : $("#slotStep");
-  target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
-$("#infoForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  if (busy) return;
-  if ($('input[name="website"]').value) return; // حماية من الروبوتات
+/* ===== الإرسال النهائي ===== */
+function handleFailure(code) {
+  if (code === "slot_unavailable" || code === "past_slot" || code === "out_of_range") {
+    sel.time = "";
+    sel.requestId = "";
+    showBanner("e_slot_taken");
+    goStep(2);
+    if (sel.date) loadSlots(sel.date, true);
+    return;
+  }
+  if (code === "invalid_input") { showBanner("e_invalid"); goStep(1); return; }
+  if (code === "busy") { showBanner("e_busy"); return; }
+  showBanner("e_server");
+}
+
+function renderSuccessText(data) {
+  $("#okText").textContent = t("ok_text")
+    .replace("{date}", displayDate(data.date))
+    .replace("{time}", data.time);
+}
+
+function showSuccess(data) {
+  successData = data;
+  ["#step1", "#step2", "#step3"].forEach(s => $(s).classList.add("hidden"));
+  $$(".stp").forEach(el => {
+    el.classList.remove("is-active");
+    el.classList.add("is-done");
+    el.removeAttribute("aria-current");
+  });
+  renderSuccessText(data);
+  $("#success").classList.remove("hidden");
+  hideBanner();
+  $("#okTitle").focus({ preventScroll: true });
+}
+
+async function submitBooking() {
+  if (submitting || booked) return;
+  const btn = $("#submitBtn");
 
   const bad = validateStep1();
-  if (bad) {
-    $("#formMsg").textContent = t("err_form");
-    bad.focus();
-    return;
-  }
-  $("#formMsg").textContent = "";
+  if (bad) { showBanner("e_form"); goStep(1); bad.focus(); return; }
+  if (!sel.date) { showBanner("e_pick_date"); goStep(2); return; }
+  if (!sel.time) { showBanner("e_pick_time"); goStep(2); return; }
 
-  busy = true;
-  const btn = $("#nextBtn");
+  if (!sel.requestId) sel.requestId = newId();
+  submitting = true;
   btn.disabled = true;
-  btn.textContent = t("sending");
+  btn.textContent = t("btn_sending");
+  hideBanner();
 
-  const data = collectLead();
+  const payload = Object.assign({
+    action: "book",
+    requestId: sel.requestId,
+    lang,
+    date: sel.date,
+    time: sel.time,
+    website: $("#hp").value
+  }, collectForm());
+
   try {
-    await postToSheet({ action: "lead", ...data, status: "Nouveau" });
-    lead = data;
-    showStep(2);
-    mountCalendly();
-  } catch (err) {
-    console.error("Lead send failed:", err);
-    $("#formMsg").textContent = t("err_send");
-  } finally {
-    busy = false;
-    btn.disabled = false;
-    btn.textContent = t("next");
-  }
-});
-
-$("#backBtn").addEventListener("click", () => showStep(1));
-
-/* ===== Calendly ===== */
-function calendlyUrl() {
-  const url = new URL(CONFIG.CALENDLY_URL);
-  url.searchParams.set("hide_gdpr_banner", "1");
-  url.searchParams.set("primary_color", "b18b45");
-  if (lang === "fr" || lang === "en") url.searchParams.set("locale", lang);
-  return url.toString();
-}
-
-function hideCalLoading() {
-  clearTimeout(loadingTimer);
-  $("#calLoading").classList.add("hidden");
-}
-
-function initWidget() {
-  const box = $("#calendlyBox");
-  box.innerHTML = "";
-  const options = { url: calendlyUrl(), parentElement: box };
-  if (lead) {
-    options.prefill = { name: lead.name };
-    if (lead.email) options.prefill.email = lead.email;
-  }
-  window.Calendly.initInlineWidget(options);
-}
-
-function mountCalendly() {
-  $("#calLoading").classList.remove("hidden");
-  $("#calFallback").href = calendlyUrl();
-  clearTimeout(loadingTimer);
-  loadingTimer = setTimeout(hideCalLoading, 8000);
-
-  if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
-    initWidget();
-    return;
-  }
-
-  clearInterval(calendlyPoll);
-  let tries = 0;
-  calendlyPoll = setInterval(() => {
-    tries++;
-    if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
-      clearInterval(calendlyPoll);
-      initWidget();
-    } else if (tries > 60) {
-      clearInterval(calendlyPoll);
-      hideCalLoading();
-      console.error("Calendly script did not load");
+    const data = await apiPost(payload);
+    if (data && data.ok) {
+      booked = true;
+      showSuccess(data);
+    } else {
+      handleFailure(data ? data.code : "server_error");
     }
-  }, 200);
-}
-
-async function onBooked(payload) {
-  if (booked) return;
-  booked = true;
-
-  const eventUri = payload && payload.event ? payload.event.uri || "" : "";
-  const inviteeUri = payload && payload.invitee ? payload.invitee.uri || "" : "";
-
-  // Apps Script يجلب التاريخ والساعة من Calendly ويكتبهم في الجدول
-  try {
-    await postToSheet({
-      action: "booking",
-      name: lead ? lead.name : "",
-      phone: lead ? lead.phone : "",
-      eventUri,
-      inviteeUri
-    });
   } catch (err) {
-    console.error("Booking save failed:", err);
+    showBanner("e_network");
+  } finally {
+    submitting = false;
+    if (!booked) {
+      btn.disabled = false;
+      btn.textContent = t("btn_submit");
+    }
   }
-
-  $("#calFallback").closest(".cal-fallback").classList.add("hidden");
-  $("#calendlyBox").closest(".cal-frame").classList.add("hidden");
-  $("#backBtn").classList.add("hidden");
-  $("#slotStep").querySelector(".sub").classList.add("hidden");
-  $("#slotStep").querySelector("h3").classList.add("hidden");
-  $("#doneStep").classList.remove("hidden");
-  $("#doneTitle").focus();
 }
 
-window.addEventListener("message", event => {
-  if (event.origin !== "https://calendly.com") return;
-  const data = event.data;
-  if (!data || typeof data.event !== "string" || !data.event.startsWith("calendly.")) return;
+/* ===== الأحداث ===== */
+$("#step1").addEventListener("submit", e => {
+  e.preventDefault();
+  const bad = validateStep1();
+  if (bad) { showBanner("e_form"); bad.focus(); return; }
+  hideBanner();
+  goStep(2);
+});
 
-  hideCalLoading();
+// إزالة رسالة الخطأ عند تعديل الحقل
+$("#step1").addEventListener("input", e => {
+  const id = e.target.id;
+  if (FIELD_IDS.indexOf(id) >= 0 && e.target.getAttribute("aria-invalid") === "true") setFieldError(id, "");
+});
+$("#step1").addEventListener("change", e => {
+  if (e.target.name === "pains" && $$('input[name="pains"]:checked').length) setFieldError("pains", "");
+  const id = e.target.id;
+  if (FIELD_IDS.indexOf(id) >= 0 && e.target.getAttribute("aria-invalid") === "true") setFieldError(id, "");
+});
+$("#phone").addEventListener("blur", () => {
+  if ($("#phone").value.trim()) setFieldError("phone", isMoroccanPhone($("#phone").value) ? "" : "e_phone");
+});
 
-  if (data.event === "calendly.event_scheduled") {
-    onBooked(data.payload);
+$("#calPrev").addEventListener("click", () => shiftMonth(-1));
+$("#calNext").addEventListener("click", () => shiftMonth(1));
+$("#calDays").addEventListener("click", e => {
+  const b = e.target.closest("button.day");
+  if (!b || b.disabled) return;
+  pickDate(b.dataset.date);
+});
+$("#slotBox").addEventListener("click", e => {
+  const b = e.target.closest("button.slot");
+  if (!b || b.disabled) return;
+  sel.time = b.dataset.time;
+  sel.requestId = "";
+  $$("#slotBox .slot").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  hideBanner();
+});
+
+$("#backTo1").addEventListener("click", () => { hideBanner(); goStep(1); });
+$("#backTo2").addEventListener("click", () => { hideBanner(); goStep(2); });
+
+$("#toStep3").addEventListener("click", async () => {
+  if (!sel.date) { showBanner("e_pick_date"); return; }
+  if (!sel.time) { showBanner("e_pick_time"); return; }
+  const btn = $("#toStep3");
+  btn.disabled = true;
+  try {
+    // تحقق من الحجز مرة أخرى قبل عرض المراجعة
+    const data = await getAvailability(sel.date, true);
+    const slot = data.slots.find(s => s.time === sel.time);
+    if (!slot || slot.status !== "available") {
+      sel.time = "";
+      sel.requestId = "";
+      renderSlots(data.slots);
+      showBanner("e_slot_taken");
+      return;
+    }
+    hideBanner();
+    goStep(3);
+  } catch (err) {
+    showBanner(err.code === "network" ? "e_network" : "e_slots");
+  } finally {
+    btn.disabled = false;
   }
 });
+
+$("#submitBtn").addEventListener("click", submitBooking);
 
 /* ===== نافذة من نحن ===== */
 const dialog = $("#aboutDialog");
-$$("[data-open-about]").forEach(b => b.addEventListener("click", () => dialog.showModal()));
-$$("[data-close-about]").forEach(b => b.addEventListener("click", () => dialog.close()));
+$$("[data-open-about]").forEach(b => b.addEventListener("click", () => {
+  if (typeof dialog.showModal === "function") dialog.showModal();
+}));
+$$("[data-close-about]").forEach(b => b.addEventListener("click", () => {
+  if (dialog.open) dialog.close();
+}));
 dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
 
-/* ===== تشغيل ===== */
+/* ===== التشغيل ===== */
 $("#langSelect").addEventListener("change", e => setLang(e.target.value));
-$("#phone").addEventListener("blur", () => {
-  if ($("#phone").value.trim()) setError("phone", isMoroccanPhone($("#phone").value) ? "" : "err_phone");
-});
+
+const nowCasa = casaToday();
+view.y = nowCasa.y;
+view.m = nowCasa.m;
 
 const initialLang = new URLSearchParams(location.search).get("lang");
 setLang(T[initialLang] ? initialLang : "ar");
+goStep(1, false);
 updatePlayButton();
 })();
 </script>
