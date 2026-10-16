@@ -97,7 +97,7 @@
   .language option { background: var(--bg); color: #fff; }
 
   /* ===== الهيرو ===== */
-  .hero { padding: 100px 0 90px; text-align: center; }
+  .hero { padding: 100px 0 70px; text-align: center; }
   .eyebrow {
     display: inline-block; padding: 7px 16px;
     border: 1px solid var(--line); border-radius: 40px;
@@ -110,14 +110,9 @@
   }
   h1 em { color: var(--gold); font-style: normal; }
   .lead {
-    max-width: 820px; margin: 0 auto 32px; color: #d7dfd8;
+    max-width: 820px; margin: 0 auto; color: #d7dfd8;
     font-size: clamp(16px, 1.4vw, 19px); line-height: 2;
   }
-  .trust {
-    display: flex; justify-content: center; gap: 14px 26px; flex-wrap: wrap;
-    margin-top: 28px; color: var(--muted); font-size: 14px;
-  }
-  .trust span::before { content: "✓"; color: var(--gold); margin-inline-end: 8px; }
 
   /* ===== الأزرار ===== */
   .btn {
@@ -142,6 +137,39 @@
   .section-head h2 { margin: 16px 0 0; font-size: clamp(28px, 3.2vw, 44px); }
   .gold { color: var(--gold-2); }
 
+  /* ===== العرض التوضيحي ===== */
+  .video-card {
+    max-width: 950px; margin: auto; overflow: hidden;
+    border: 1px solid var(--line); border-radius: 22px;
+    background: #07140f; box-shadow: 0 25px 70px #0004;
+  }
+  .video-title { padding: 22px; text-align: center; }
+  .video-title h3 { font-size: clamp(20px, 2vw, 27px); line-height: 1.6; }
+  .video-stage {
+    position: relative; display: grid; place-items: center;
+    aspect-ratio: 16 / 9; overflow: hidden;
+    background: radial-gradient(circle, #1b4938, #07130f 75%);
+  }
+  .video-stage video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; background: #07130f;
+  }
+  .play-button {
+    position: relative; z-index: 2; display: grid; place-items: center;
+    width: 78px; height: 78px; border: 1px solid var(--gold); border-radius: 50%;
+    background: #0b211bd9; color: var(--gold-2); font-size: 29px;
+    box-shadow: 0 0 0 12px #d8b56d12;
+  }
+  .video-overlay {
+    position: absolute; z-index: 2; right: 20px; left: 20px; bottom: 20px;
+    color: #fff; font-size: 14px; text-align: center;
+    pointer-events: none; text-shadow: 0 2px 8px #000;
+  }
+  .video-stage.playing .play-button { opacity: 0; }
+  .video-stage.playing:hover .play-button { opacity: 1; }
+  .progress { height: 5px; background: #ffffff18; }
+  .progress-bar { width: 0; height: 100%; background: var(--gold); }
+
   /* ===== الخدمات ===== */
   .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .feature {
@@ -165,7 +193,10 @@
   .step h3 { margin: 8px 0; font-size: 21px; }
   .step p { color: var(--muted); font-size: 15px; }
 
-  /* ===== الحجز ===== */
+  /* ===== الحجز (مخفي حتى ينتهي الفيديو) ===== */
+  #booking { display: none; }
+  #booking.revealed { display: block; }
+
   .book {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
     gap: 28px; align-items: start;
@@ -216,18 +247,18 @@
     border: 1px solid var(--field-line); border-radius: 12px; background: #fff; color: var(--ink);
     unicode-bidi: plaintext;
   }
-  .field select { appearance: none; -webkit-appearance: none; cursor: pointer; padding-inline-end: 40px;
+  .field select {
+    appearance: none; -webkit-appearance: none; cursor: pointer; padding-inline-end: 40px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2316382c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: left 14px center;
   }
   html[dir="ltr"] .field select { background-position: right 14px center; }
-  html[dir="rtl"] .field select { background-position: left 14px center; }
   .field input::placeholder { color: #9aa39d; opacity: 1; }
   .field input:focus, .field select:focus {
     border-color: #ad8845; outline: 3px solid rgba(216, 181, 109, .45); outline-offset: 1px;
   }
   .field [aria-invalid="true"] { border-color: var(--error); }
-  .err { color: var(--error); font-size: 13px; min-height: 0; }
+  .err { color: var(--error); font-size: 13px; }
   .err:empty { display: none; }
 
   .pains { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -246,7 +277,6 @@
   .actions .btn { min-width: 220px; }
   .note { color: #66736b; font-size: 13px; }
   .form-msg { margin-top: 14px; font-weight: 600; }
-
   .hp { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; opacity: 0; }
 
   /* Calendly */
@@ -309,12 +339,15 @@
     .nav-right { gap: 10px; }
     .nav-right a, .nav-link { font-size: 13px; }
     .language { min-width: 0; padding: 8px 10px; font-size: 13px; }
-    .hero { padding: 58px 0 54px; }
+    .hero { padding: 58px 0 40px; }
     .section { padding: 64px 0; }
     .grid { grid-template-columns: 1fr; }
     .form-grid, .pains { grid-template-columns: 1fr; }
     .book-aside { padding: 26px; }
     .actions .btn { width: 100%; min-width: 0; }
+    .video-stage { aspect-ratio: 4 / 3; }
+    .play-button { width: 65px; height: 65px; }
+    .video-overlay { bottom: 12px; font-size: 12px; }
     .calendly-inline-widget { height: 760px; }
   }
 
@@ -351,11 +384,35 @@
       <span class="eyebrow" data-i18n="eyebrow">أنظمة ذكية للوكالات العقارية المغربية</span>
       <h1 data-i18n-html="hero_title">نبني لك نظاماً يحوّل كل استفسار إلى <em>فرصة بيع حقيقية</em></h1>
       <p class="lead" data-i18n="hero_lead">يستجيب للعملاء على مدار الساعة، ويجمع معلوماتهم ويفرزهم ويصنّفهم حسب الجدية والميزانية، ليساعد فريقك على التركيز على العملاء الأكثر استعداداً للشراء.</p>
-      <a class="btn" href="#booking" data-i18n="hero_cta">احجز استشارتك المجانية</a>
-      <div class="trust">
-        <span data-i18n="trust1">استجابة على مدار الساعة</span>
-        <span data-i18n="trust2">فرز وتصنيف العملاء</span>
-        <span data-i18n="trust3">مصمم للوكالات المغربية</span>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" data-i18n="demo_eyebrow">عرض توضيحي</span>
+        <h2 data-i18n-html="demo_title">اكتشف كيف يعمل النظام <span class="gold">بذكاء وفعالية</span></h2>
+      </div>
+
+      <div class="video-card">
+        <div class="video-title">
+          <h3 data-i18n="video_heading">شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة</h3>
+        </div>
+
+        <div class="video-stage" id="videoStage">
+          <!-- استبدل الرابط بفيديو الوكالة الخاص بك -->
+          <video id="demoVideo" playsinline preload="metadata">
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          </video>
+
+          <button class="play-button" id="playDemo" type="button" aria-label="Play video">▶</button>
+
+          <div class="video-overlay" id="videoOverlay" data-i18n="video_overlay">شاهد الفيديو حتى النهاية لفتح نموذج الاستشارة</div>
+        </div>
+
+        <div class="progress">
+          <div class="progress-bar" id="videoProgress"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -391,7 +448,8 @@
     </div>
   </section>
 
-  <section class="section section-alt" id="booking">
+  <!-- يظهر فقط بعد انتهاء الفيديو -->
+  <section class="section section-alt" id="booking" aria-hidden="true">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow" data-i18n="book_eyebrow">جلسة استشارية مجانية</span>
@@ -530,7 +588,7 @@
           <section id="doneStep" class="done hidden" aria-live="polite">
             <div class="check">✓</div>
             <h3 tabindex="-1" id="doneTitle" data-i18n="ok_title">تم تأكيد موعدك</h3>
-            <p id="doneText"></p>
+            <p data-i18n="ok_text">ستصلك رسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك على واتساب.</p>
           </section>
         </div>
       </div>
@@ -563,17 +621,20 @@
   </div>
 </dialog>
 
+<!-- Calendly widget script -->
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <script>
 (() => {
 'use strict';
 
 /* ===== الإعدادات ===== */
 const CONFIG = {
-  // رابط Google Apps Script (Web app)
   SHEET_ENDPOINT: "https://script.google.com/macros/s/AKfycbymHxc7-kPzXJ0unDZC2oob1MC3OGi-rq6P1jJShsF8n8Nkj4lU06h2eF71I764qiI/exec",
   CALENDLY_URL: "https://calendly.com/-darflow/30min",
-  TIMEZONE: "Africa/Casablanca",
-  SEND_TIMEOUT_MS: 15000
+  SEND_TIMEOUT_MS: 15000,
+  VIDEO_FAST_SECONDS: 3,
+  VIDEO_FAST_RATE: 1.6
 };
 
 /* ===== الترجمات ===== */
@@ -583,8 +644,11 @@ const T = {
     eyebrow: "أنظمة ذكية للوكالات العقارية المغربية",
     hero_title: 'نبني لك نظاماً يحوّل كل استفسار إلى <em>فرصة بيع حقيقية</em>',
     hero_lead: "يستجيب للعملاء على مدار الساعة، ويجمع معلوماتهم ويفرزهم ويصنّفهم حسب الجدية والميزانية، ليساعد فريقك على التركيز على العملاء الأكثر استعداداً للشراء.",
-    hero_cta: "احجز استشارتك المجانية",
-    trust1: "استجابة على مدار الساعة", trust2: "فرز وتصنيف العملاء", trust3: "مصمم للوكالات المغربية",
+    demo_eyebrow: "عرض توضيحي",
+    demo_title: 'اكتشف كيف يعمل النظام <span class="gold">بذكاء وفعالية</span>',
+    video_heading: "شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة",
+    video_overlay: "شاهد الفيديو حتى النهاية لفتح نموذج الاستشارة",
+    video_play: "تشغيل الفيديو", video_pause: "إيقاف مؤقت", video_replay: "إعادة المشاهدة",
     feat_eyebrow: "نظام متكامل", feat_title: "كل خطوة محسوبة ليحقق فريقك مبيعات أكثر",
     f1t: "استجابة فورية على مدار الساعة", f1p: "يتلقى العميل رداً سريعاً حتى خارج أوقات العمل، دون انتظار رد الفريق.",
     f2t: "فرز العملاء وتصنيفهم", f2p: "تصنيف العملاء وفق الميزانية ونوع العقار والاحتياجات ومدى الاستعداد للشراء.",
@@ -615,15 +679,15 @@ const T = {
     f_pains: "ما المشكل الذي يزعجك أكثر؟ *",
     p1: "بطء الرد على الزبناء", p2: "ضياع الزبناء دون متابعة", p3: "صعوبة تنظيم المعاينات", p4: "معلومات مبعثرة", p5: "غياب التقارير",
     f_email: "البريد الإلكتروني (اختياري)",
-    required: "* الحقول الإلزامية", next: "التالي: اختيار الموعد",
+    required: "* الحقول الإلزامية", next: "التالي: اختيار الموعد", sending: "جارٍ الإرسال…",
     s2_title: "اختر الموعد المناسب لك", s2_sub: "اختر يوماً ووقتاً متاحين، وسيصلك تأكيد الموعد مباشرة.",
     cal_loading: "جارٍ تحميل التقويم…", cal_fallback: "إذا لم يظهر التقويم،", cal_link: "افتح صفحة الحجز في نافذة جديدة",
     back: "رجوع للمعلومات",
-    ok_title: "تم تأكيد موعدك", ok_text: "موعدك يوم {date} على الساعة {time}. ستصلك رسالة تأكيد على بريدك، وسنتواصل معك على واتساب.",
-    ok_text_nodate: "تم تأكيد طلبك. ستصلك رسالة تأكيد تتضمن تفاصيل الموعد.",
+    ok_title: "تم تأكيد موعدك",
+    ok_text: "ستصلك رسالة تأكيد على بريدك الإلكتروني، وسنتواصل معك على واتساب.",
     err_req: "أكمل هذا الحقل", err_choose: "اختر جواباً", err_phone: "المرجو إدخال رقم واتساب مغربي صحيح",
     err_email: "البريد الإلكتروني غير صحيح", err_form: "أكمل الحقول المشار إليها ثم أعد المحاولة.",
-    err_send: "تعذّر الإرسال. تحقق من اتصالك بالإنترنت وأعد المحاولة.", sending: "جارٍ الإرسال…",
+    err_send: "تعذّر الإرسال. تحقق من اتصالك بالإنترنت وأعد المحاولة.",
     rights: "جميع الحقوق محفوظة.", footer_line: "أنظمة ذكية للوكالات العقارية بالمغرب",
     close: "إغلاق",
     about_title: "DarFlow — من نحن؟",
@@ -641,8 +705,11 @@ const T = {
     eyebrow: "Systèmes intelligents pour les agences immobilières marocaines",
     hero_title: 'Un système qui transforme chaque demande en <em>opportunité commerciale</em>',
     hero_lead: "Votre système répond 24h/24, recueille les informations, qualifie les prospects selon leur sérieux et leur budget, et aide votre équipe à se concentrer sur les clients les plus prêts à acheter.",
-    hero_cta: "Réservez votre consultation gratuite",
-    trust1: "Réponse 24h/24", trust2: "Qualification des prospects", trust3: "Pensé pour le marché marocain",
+    demo_eyebrow: "Démonstration",
+    demo_title: 'Découvrez un système <span class="gold">intelligent et efficace</span>',
+    video_heading: "Découvrez comment une demande devient une opportunité organisée",
+    video_overlay: "Regardez la vidéo jusqu’à la fin pour accéder au formulaire",
+    video_play: "Lancer la vidéo", video_pause: "Mettre en pause", video_replay: "Revoir la vidéo",
     feat_eyebrow: "Solution complète", feat_title: "Chaque étape aide votre équipe à mieux vendre",
     f1t: "Réponse immédiate 24h/24", f1p: "Les prospects reçoivent une réponse rapide, même en dehors des heures de travail.",
     f2t: "Qualification et score", f2p: "Classez les prospects selon le budget, le type de bien, les besoins et leur préparation à l’achat.",
@@ -673,15 +740,15 @@ const T = {
     f_pains: "Quel problème vous pèse le plus ? *",
     p1: "Réponses trop lentes", p2: "Prospects perdus sans suivi", p3: "Visites difficiles à organiser", p4: "Informations dispersées", p5: "Manque de rapports",
     f_email: "E-mail (facultatif)",
-    required: "* Champs obligatoires", next: "Suivant : choisir un créneau",
+    required: "* Champs obligatoires", next: "Suivant : choisir un créneau", sending: "Envoi en cours…",
     s2_title: "Choisissez votre créneau", s2_sub: "Sélectionnez un jour et une heure disponibles, la confirmation vous parviendra aussitôt.",
     cal_loading: "Chargement du calendrier…", cal_fallback: "Si le calendrier ne s’affiche pas,", cal_link: "ouvrez la page de réservation dans un nouvel onglet",
     back: "Retour aux informations",
-    ok_title: "Votre rendez-vous est confirmé", ok_text: "Rendez-vous le {date} à {time}. Vous recevrez un e-mail de confirmation, et nous vous contacterons sur WhatsApp.",
-    ok_text_nodate: "Votre demande est confirmée. Vous recevrez un e-mail avec les détails du rendez-vous.",
+    ok_title: "Votre rendez-vous est confirmé",
+    ok_text: "Vous recevrez un e-mail de confirmation, et nous vous contacterons sur WhatsApp.",
     err_req: "Complétez ce champ", err_choose: "Choisissez une réponse", err_phone: "Veuillez saisir un numéro WhatsApp marocain valide",
     err_email: "Adresse e-mail invalide", err_form: "Complétez les champs signalés puis réessayez.",
-    err_send: "Envoi impossible. Vérifiez votre connexion et réessayez.", sending: "Envoi en cours…",
+    err_send: "Envoi impossible. Vérifiez votre connexion et réessayez.",
     rights: "Tous droits réservés.", footer_line: "Systèmes intelligents pour agences immobilières au Maroc",
     close: "Fermer",
     about_title: "DarFlow — À propos",
@@ -699,8 +766,11 @@ const T = {
     eyebrow: "Smart systems for Moroccan real estate agencies",
     hero_title: 'A system that turns every inquiry into a <em>real sales opportunity</em>',
     hero_lead: "It responds 24/7, collects information, qualifies leads by seriousness and budget, and helps your team focus on the prospects most ready to buy.",
-    hero_cta: "Book your free consultation",
-    trust1: "24/7 responses", trust2: "Lead qualification", trust3: "Built for Moroccan agencies",
+    demo_eyebrow: "Live demonstration",
+    demo_title: 'Discover a system built for <span class="gold">smarter real estate work</span>',
+    video_heading: "See how a customer inquiry becomes an organized sales opportunity",
+    video_overlay: "Watch the video to the end to unlock the consultation form",
+    video_play: "Play video", video_pause: "Pause", video_replay: "Watch again",
     feat_eyebrow: "Integrated system", feat_title: "Every step helps your team sell smarter",
     f1t: "Instant 24/7 responses", f1p: "Prospects receive a quick reply, even outside business hours.",
     f2t: "Lead scoring", f2p: "Classify prospects by budget, property type, needs and readiness to buy.",
@@ -731,15 +801,15 @@ const T = {
     f_pains: "What bothers you the most? *",
     p1: "Slow replies to clients", p2: "Leads lost without follow-up", p3: "Hard to organize viewings", p4: "Scattered information", p5: "No reporting",
     f_email: "Email (optional)",
-    required: "* Required fields", next: "Next: choose a time",
+    required: "* Required fields", next: "Next: choose a time", sending: "Sending…",
     s2_title: "Choose your time slot", s2_sub: "Pick an available day and time. You’ll get the confirmation right away.",
     cal_loading: "Loading the calendar…", cal_fallback: "If the calendar doesn’t appear,", cal_link: "open the booking page in a new tab",
     back: "Back to details",
-    ok_title: "Your appointment is confirmed", ok_text: "Your appointment is on {date} at {time}. You’ll receive a confirmation email, and we’ll contact you on WhatsApp.",
-    ok_text_nodate: "Your request is confirmed. You’ll receive an email with the appointment details.",
+    ok_title: "Your appointment is confirmed",
+    ok_text: "You’ll receive a confirmation email, and we’ll contact you on WhatsApp.",
     err_req: "Please fill in this field", err_choose: "Please choose an option", err_phone: "Please enter a valid Moroccan WhatsApp number",
     err_email: "Invalid email address", err_form: "Please complete the highlighted fields and try again.",
-    err_send: "Could not send. Check your connection and try again.", sending: "Sending…",
+    err_send: "Could not send. Check your connection and try again.",
     rights: "All rights reserved.", footer_line: "Smart systems for real estate agencies in Morocco",
     close: "Close",
     about_title: "DarFlow — About us",
@@ -754,7 +824,7 @@ const T = {
   }
 };
 
-/* قيم تُرسل إلى Google Sheet (بالفرنسية كما في الجدول) */
+/* المدن: [فرنسية (تُحفظ في الجدول), عربية, إنجليزية] */
 const CITIES = [
   ["Casablanca", "الدار البيضاء", "Casablanca"], ["Rabat", "الرباط", "Rabat"],
   ["Marrakech", "مراكش", "Marrakesh"], ["Tanger", "طنجة", "Tangier"], ["Fès", "فاس", "Fez"],
@@ -776,14 +846,15 @@ const CITIES = [
 /* ===== أدوات ===== */
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let lang = "ar";
-let lead = null;          // بيانات المرحلة الأولى
-let lastSlot = null;      // آخر موعد اختاره المستخدم داخل Calendly
+let lead = null;      // بيانات المرحلة الأولى
 let booked = false;
 let busy = false;
-let calendlyScriptRequested = false;
+let scriptRequested = false;
 let loadingTimer = null;
+let calendlyPoll = null;
 
 const t = key => (T[lang] && T[lang][key]) ?? T.ar[key] ?? key;
 
@@ -805,8 +876,8 @@ function setLang(next) {
 
   buildCityOptions();
   $("#langSelect").value = lang;
+  updatePlayButton();
 
-  // إعادة تحميل التقويم باللغة الجديدة إن كان ظاهراً
   if (!$("#slotStep").classList.contains("hidden") && !booked) mountCalendly();
 }
 
@@ -828,6 +899,88 @@ function buildCityOptions() {
     select.appendChild(opt);
   });
   select.value = current;
+}
+
+/* ===== العرض التوضيحي ===== */
+const video = $("#demoVideo");
+const stage = $("#videoStage");
+const playBtn = $("#playDemo");
+const progressBar = $("#videoProgress");
+let maxWatched = 0;
+let fastDone = false;
+let finished = false;
+
+function updatePlayButton() {
+  const key = finished ? "video_replay" : (!video.paused ? "video_pause" : "video_play");
+  playBtn.textContent = finished ? "↻" : (!video.paused ? "Ⅱ" : "▶");
+  playBtn.setAttribute("aria-label", t(key));
+}
+
+function togglePlay() {
+  if (!video.paused) {
+    video.pause();
+    return;
+  }
+  if (video.ended || finished) {
+    video.currentTime = 0;
+    maxWatched = 0;
+    fastDone = false;
+    finished = false;
+  }
+  video.playbackRate = fastDone ? 1 : CONFIG.VIDEO_FAST_RATE;
+  video.play().catch(() => {});
+}
+
+playBtn.addEventListener("click", togglePlay);
+$("#videoStage").addEventListener("click", e => {
+  if (e.target === playBtn) return;
+  togglePlay();
+});
+
+video.addEventListener("play", () => {
+  stage.classList.add("playing");
+  $("#videoOverlay").classList.add("hidden");
+  updatePlayButton();
+});
+
+video.addEventListener("pause", () => {
+  if (!video.ended) {
+    stage.classList.remove("playing");
+    $("#videoOverlay").classList.remove("hidden");
+  }
+  updatePlayButton();
+});
+
+video.addEventListener("timeupdate", () => {
+  if (!fastDone && video.currentTime >= CONFIG.VIDEO_FAST_SECONDS) {
+    video.playbackRate = 1;
+    fastDone = true;
+  }
+  if (!video.seeking) maxWatched = Math.max(maxWatched, video.currentTime);
+  if (video.duration > 0) {
+    progressBar.style.width = (video.currentTime / video.duration * 100) + "%";
+  }
+});
+
+// منع تقديم الفيديو للأمام: المشاهد لازم يتفرج عليه كامل
+video.addEventListener("seeking", () => {
+  if (video.currentTime > maxWatched + 1) video.currentTime = maxWatched;
+});
+
+video.addEventListener("ended", () => {
+  finished = true;
+  stage.classList.remove("playing");
+  progressBar.style.width = "100%";
+  updatePlayButton();
+  revealBooking();
+});
+
+function revealBooking() {
+  const booking = $("#booking");
+  if (booking.classList.contains("revealed")) return;
+  booking.classList.add("revealed");
+  booking.setAttribute("aria-hidden", "false");
+  booking.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
 /* ===== التحقق ===== */
@@ -867,7 +1020,10 @@ function setError(id, key) {
 
 function validateStep1() {
   let first = null;
-  const mark = (id, key) => { setError(id, key); if (key && !first) first = $("#" + id); };
+  const mark = (id, key, target) => {
+    setError(id, key);
+    if (key && !first) first = target || $("#" + id);
+  };
 
   mark("name", $("#name").value.trim() ? "" : "err_req");
   mark("agency", $("#agency").value.trim() ? "" : "err_req");
@@ -886,7 +1042,6 @@ function validateStep1() {
   return first;
 }
 
-/* ===== جمع البيانات وإرسالها ===== */
 function collectLead() {
   return {
     name: $("#name").value.trim(),
@@ -900,11 +1055,12 @@ function collectLead() {
   };
 }
 
+/* ===== الإرسال إلى Google Apps Script ===== */
 async function postToSheet(payload) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), CONFIG.SEND_TIMEOUT_MS);
   try {
-    // no-cors: الرد غير قابل للقراءة من المتصفح، لذلك نعتبر الإرسال ناجحاً عند عدم وجود خطأ شبكي
+    // no-cors: المتصفح ما كيقراش الرد، لذلك الخطأ الوحيد اللي كنكشفو هو فشل الشبكة أو الtimeout
     await fetch(CONFIG.SHEET_ENDPOINT, {
       method: "POST",
       mode: "no-cors",
@@ -928,15 +1084,13 @@ function showStep(n) {
     if (s === n) el.setAttribute("aria-current", "step"); else el.removeAttribute("aria-current");
   });
   const target = n === 1 ? $("#infoForm") : $("#slotStep");
-  target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
 $("#infoForm").addEventListener("submit", async event => {
   event.preventDefault();
   if (busy) return;
-
-  // حماية من الروبوتات
-  if ($('input[name="website"]').value) return;
+  if ($('input[name="website"]').value) return; // حماية من الروبوتات
 
   const bad = validateStep1();
   if (bad) {
@@ -970,14 +1124,8 @@ $("#infoForm").addEventListener("submit", async event => {
 $("#backBtn").addEventListener("click", () => showStep(1));
 
 /* ===== Calendly ===== */
-function buildCalendlyUrl() {
+function calendlyUrl() {
   const url = new URL(CONFIG.CALENDLY_URL);
-  if (lead) {
-    url.searchParams.set("name", lead.name);
-    if (lead.email) url.searchParams.set("email", lead.email);
-    // يُملأ أول سؤال مخصص في نوع الحدث إن وُجد
-    url.searchParams.set("a1", [lead.agency, lead.city, lead.team, lead.demand, lead.pains, lead.phone].join(" | "));
-  }
   url.searchParams.set("hide_gdpr_banner", "1");
   url.searchParams.set("primary_color", "b18b45");
   if (lang === "fr" || lang === "en") url.searchParams.set("locale", lang);
@@ -989,96 +1137,71 @@ function hideCalLoading() {
   $("#calLoading").classList.add("hidden");
 }
 
-function mountCalendly() {
+function initWidget() {
   const box = $("#calendlyBox");
-  const url = buildCalendlyUrl();
-  box.dataset.url = url;
+  box.innerHTML = "";
+  const options = { url: calendlyUrl(), parentElement: box };
+  if (lead) {
+    options.prefill = { name: lead.name };
+    if (lead.email) options.prefill.email = lead.email;
+  }
+  window.Calendly.initInlineWidget(options);
+}
+
+function mountCalendly() {
   $("#calLoading").classList.remove("hidden");
+  $("#calFallback").href = calendlyUrl();
   clearTimeout(loadingTimer);
   loadingTimer = setTimeout(hideCalLoading, 8000);
-  $("#calFallback").href = url;
 
   if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
-    box.innerHTML = "";
-    window.Calendly.initInlineWidget({ url, parentElement: box });
+    initWidget();
     return;
   }
 
-  if (!calendlyScriptRequested) {
-    calendlyScriptRequested = true;
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    script.onload = () => {
-      // الـ widget يبدأ تلقائياً من data-url، وهنا احتياط إن لم يُهيأ
-      if (window.Calendly && !box.querySelector("iframe")) {
-        window.Calendly.initInlineWidget({ url: box.dataset.url, parentElement: box });
-      }
-    };
-    script.onerror = () => {
+  // انتظر تحميل السكربت الموجود في الصفحة
+  clearInterval(calendlyPoll);
+  let tries = 0;
+  calendlyPoll = setInterval(() => {
+    tries++;
+    if (window.Calendly && typeof window.Calendly.initInlineWidget === "function") {
+      clearInterval(calendlyPoll);
+      initWidget();
+    } else if (tries > 60) {
+      clearInterval(calendlyPoll);
       hideCalLoading();
-      console.error("Calendly script failed to load");
-    };
-    document.body.appendChild(script);
-  }
-}
-
-function extractSlot(payload) {
-  if (!payload) return null;
-  const iso = payload.start_time || payload.startTime || payload.date_time ||
-              (payload.event && payload.event.start_time);
-  if (iso) {
-    const dt = new Date(iso);
-    if (!isNaN(dt)) {
-      const date = new Intl.DateTimeFormat("en-CA", {
-        timeZone: CONFIG.TIMEZONE, year: "numeric", month: "2-digit", day: "2-digit"
-      }).format(dt);
-      const time = new Intl.DateTimeFormat("en-GB", {
-        timeZone: CONFIG.TIMEZONE, hour: "2-digit", minute: "2-digit", hour12: false
-      }).format(dt);
-      return { date, time };
+      console.error("Calendly script did not load");
     }
-  }
-  if (payload.date && payload.time) return { date: String(payload.date), time: String(payload.time) };
-  return null;
-}
-
-function formatForDisplay(slot) {
-  const [y, m, d] = slot.date.split("-").map(Number);
-  const dateObj = new Date(y, m - 1, d, 12);
-  const locale = lang === "ar" ? "ar-MA-u-nu-latn" : lang === "fr" ? "fr-FR" : "en-GB";
-  return new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long" }).format(dateObj);
+  }, 200);
 }
 
 async function onBooked(payload) {
   if (booked) return;
   booked = true;
 
-  const slot = extractSlot(payload) || lastSlot;
+  const eventUri = payload && payload.event ? payload.event.uri || "" : "";
+  const inviteeUri = payload && payload.invitee ? payload.invitee.uri || "" : "";
 
+  // Apps Script يجلب التاريخ والساعة من Calendly ويكتبهم في الجدول
   try {
     await postToSheet({
       action: "booking",
+      name: lead ? lead.name : "",
       phone: lead ? lead.phone : "",
-      date: slot ? slot.date : "",
-      time: slot ? slot.time : "",
-      eventUri: payload && payload.event ? payload.event.uri || "" : "",
-      inviteeUri: payload && payload.invitee ? payload.invitee.uri || "" : ""
+      eventUri,
+      inviteeUri
     });
   } catch (err) {
     console.error("Booking save failed:", err);
   }
 
+  $("#calFallback").closest(".cal-fallback").classList.add("hidden");
   $("#calendlyBox").closest(".cal-frame").classList.add("hidden");
   $("#backBtn").classList.add("hidden");
   $("#slotStep").querySelector(".sub").classList.add("hidden");
-  $("#slotStep").querySelector(".cal-fallback").classList.add("hidden");
-  $("#slotStep").querySelector("h3").textContent = t("ok_title");
-  $("#doneText").textContent = slot
-    ? t("ok_text").replace("{date}", formatForDisplay(slot)).replace("{time}", slot.time)
-    : t("ok_text_nodate");
+  $("#slotStep").querySelector("h3").classList.add("hidden");
   $("#doneStep").classList.remove("hidden");
-  $("#doneStep").querySelector("h3").focus();
+  $("#doneTitle").focus();
 }
 
 window.addEventListener("message", event => {
@@ -1086,18 +1209,14 @@ window.addEventListener("message", event => {
   const data = event.data;
   if (!data || typeof data.event !== "string" || !data.event.startsWith("calendly.")) return;
 
-  console.log("[Calendly]", data.event, data.payload);
   hideCalLoading();
 
-  if (data.event === "calendly.date_and_time_selected") {
-    lastSlot = extractSlot(data.payload) || lastSlot;
-  }
   if (data.event === "calendly.event_scheduled") {
     onBooked(data.payload);
   }
 });
 
-/* ===== النافذة ===== */
+/* ===== نافذة من نحن ===== */
 const dialog = $("#aboutDialog");
 $$("[data-open-about]").forEach(b => b.addEventListener("click", () => dialog.showModal()));
 $$("[data-close-about]").forEach(b => b.addEventListener("click", () => dialog.close()));
@@ -1105,10 +1224,13 @@ dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close();
 
 /* ===== تشغيل ===== */
 $("#langSelect").addEventListener("change", e => setLang(e.target.value));
-$("#phone").addEventListener("blur", () => { if ($("#phone").value.trim()) setError("phone", isMoroccanPhone($("#phone").value) ? "" : "err_phone"); });
+$("#phone").addEventListener("blur", () => {
+  if ($("#phone").value.trim()) setError("phone", isMoroccanPhone($("#phone").value) ? "" : "err_phone");
+});
 
 const initialLang = new URLSearchParams(location.search).get("lang");
 setLang(T[initialLang] ? initialLang : "ar");
+updatePlayButton();
 })();
 </script>
 </body>
