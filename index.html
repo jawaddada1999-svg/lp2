@@ -54,11 +54,6 @@
 
   :focus-visible { outline: 3px solid var(--gold-2); outline-offset: 3px; }
 
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; overflow: hidden;
-    clip: rect(0 0 0 0); white-space: nowrap;
-  }
-
   .skip {
     position: absolute; inset-inline-start: 1rem; top: -4rem; z-index: 100;
     background: var(--gold); color: var(--ink); padding: .5rem 1rem; border-radius: 8px;
@@ -196,6 +191,15 @@
   /* ===== الحجز (مخفي حتى ينتهي الفيديو) ===== */
   #booking { display: none; }
   #booking.revealed { display: block; }
+
+  /* وضع الحجز: بعد انتهاء الفيديو، تبقى واجهة الحجز فقط */
+  body.booking-mode main > section:not(#booking) { display: none; }
+  body.booking-mode #booking { padding-top: 56px; min-height: calc(100vh - 76px); }
+  body.booking-mode .book-aside { display: none; }
+  body.booking-mode .book {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 860px; margin-inline: auto;
+  }
 
   .book {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
@@ -349,6 +353,7 @@
     .play-button { width: 65px; height: 65px; }
     .video-overlay { bottom: 12px; font-size: 12px; }
     .calendly-inline-widget { height: 760px; }
+    body.booking-mode #booking { padding-top: 32px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -648,7 +653,6 @@ const T = {
     demo_title: 'اكتشف كيف يعمل النظام <span class="gold">بذكاء وفعالية</span>',
     video_heading: "شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة",
     video_overlay: "شاهد الفيديو حتى النهاية لفتح نموذج الاستشارة",
-    video_play: "تشغيل الفيديو", video_pause: "إيقاف مؤقت", video_replay: "إعادة المشاهدة",
     feat_eyebrow: "نظام متكامل", feat_title: "كل خطوة محسوبة ليحقق فريقك مبيعات أكثر",
     f1t: "استجابة فورية على مدار الساعة", f1p: "يتلقى العميل رداً سريعاً حتى خارج أوقات العمل، دون انتظار رد الفريق.",
     f2t: "فرز العملاء وتصنيفهم", f2p: "تصنيف العملاء وفق الميزانية ونوع العقار والاحتياجات ومدى الاستعداد للشراء.",
@@ -709,7 +713,6 @@ const T = {
     demo_title: 'Découvrez un système <span class="gold">intelligent et efficace</span>',
     video_heading: "Découvrez comment une demande devient une opportunité organisée",
     video_overlay: "Regardez la vidéo jusqu’à la fin pour accéder au formulaire",
-    video_play: "Lancer la vidéo", video_pause: "Mettre en pause", video_replay: "Revoir la vidéo",
     feat_eyebrow: "Solution complète", feat_title: "Chaque étape aide votre équipe à mieux vendre",
     f1t: "Réponse immédiate 24h/24", f1p: "Les prospects reçoivent une réponse rapide, même en dehors des heures de travail.",
     f2t: "Qualification et score", f2p: "Classez les prospects selon le budget, le type de bien, les besoins et leur préparation à l’achat.",
@@ -770,7 +773,6 @@ const T = {
     demo_title: 'Discover a system built for <span class="gold">smarter real estate work</span>',
     video_heading: "See how a customer inquiry becomes an organized sales opportunity",
     video_overlay: "Watch the video to the end to unlock the consultation form",
-    video_play: "Play video", video_pause: "Pause", video_replay: "Watch again",
     feat_eyebrow: "Integrated system", feat_title: "Every step helps your team sell smarter",
     f1t: "Instant 24/7 responses", f1p: "Prospects receive a quick reply, even outside business hours.",
     f2t: "Lead scoring", f2p: "Classify prospects by budget, property type, needs and readiness to buy.",
@@ -849,10 +851,9 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 let lang = "ar";
-let lead = null;      // بيانات المرحلة الأولى
+let lead = null;
 let booked = false;
 let busy = false;
-let scriptRequested = false;
 let loadingTimer = null;
 let calendlyPoll = null;
 
@@ -932,7 +933,7 @@ function togglePlay() {
 }
 
 playBtn.addEventListener("click", togglePlay);
-$("#videoStage").addEventListener("click", e => {
+stage.addEventListener("click", e => {
   if (e.target === playBtn) return;
   togglePlay();
 });
@@ -962,7 +963,7 @@ video.addEventListener("timeupdate", () => {
   }
 });
 
-// منع تقديم الفيديو للأمام: المشاهد لازم يتفرج عليه كامل
+// منع تقديم الفيديو للأمام: لازم يتفرج عليه كامل
 video.addEventListener("seeking", () => {
   if (video.currentTime > maxWatched + 1) video.currentTime = maxWatched;
 });
@@ -972,14 +973,17 @@ video.addEventListener("ended", () => {
   stage.classList.remove("playing");
   progressBar.style.width = "100%";
   updatePlayButton();
-  revealBooking();
+  enterBookingMode();
 });
 
-function revealBooking() {
+/* بعد انتهاء الفيديو: تبقى واجهة الحجز فقط */
+function enterBookingMode() {
   const booking = $("#booking");
   if (booking.classList.contains("revealed")) return;
   booking.classList.add("revealed");
   booking.setAttribute("aria-hidden", "false");
+  document.body.classList.add("booking-mode");
+  window.scrollTo({ top: 0, behavior: "auto" });
   booking.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
 }
 
@@ -1060,7 +1064,7 @@ async function postToSheet(payload) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), CONFIG.SEND_TIMEOUT_MS);
   try {
-    // no-cors: المتصفح ما كيقراش الرد، لذلك الخطأ الوحيد اللي كنكشفو هو فشل الشبكة أو الtimeout
+    // no-cors: المتصفح ما كيقراش الرد، لذلك الخطأ الوحيد اللي كنكشفو هو فشل الشبكة أو الـ timeout
     await fetch(CONFIG.SHEET_ENDPOINT, {
       method: "POST",
       mode: "no-cors",
@@ -1159,7 +1163,6 @@ function mountCalendly() {
     return;
   }
 
-  // انتظر تحميل السكربت الموجود في الصفحة
   clearInterval(calendlyPoll);
   let tries = 0;
   calendlyPoll = setInterval(() => {
