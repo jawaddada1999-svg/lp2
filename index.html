@@ -240,6 +240,12 @@ en:["Casablanca","Rabat","Marrakesh","Tangier","Fez","Agadir","Meknes","Oujda","
 };
 let lang="ar";
 const $=id=>document.getElementById(id);
+const now=new Date();
+let viewYear=now.getFullYear(),
+    viewMonth=now.getMonth(),
+    selectedDate=null,
+    selectedSlot=null,
+    slotsList=[];
 function setLanguage(next){
  lang=next;document.documentElement.lang=next;document.documentElement.dir=next==="ar"?"rtl":"ltr";
  document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(translations[next][k]!==undefined)el.innerHTML=translations[next][k]});
@@ -287,8 +293,6 @@ $("nextStep").onclick = () => {
  if (!selectedDate) selectedDate = dateKey(new Date()); renderCalendar(); loadSlots();
 };
 $("backStep").onclick=()=>{$("formStep2").classList.add("hidden");$("formStep1").classList.remove("hidden");$("stepLabel2").classList.remove("active");$("stepLabel1").classList.add("active");$("formStep1").scrollIntoView({behavior:"smooth",block:"start"})};
-
-const now=new Date();let viewYear=now.getFullYear(),viewMonth=now.getMonth(),selectedDate=null,selectedSlot=null,slotsList=[];
 function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
 async function loadSlots(){
  const box=$("slots"); box.innerHTML=""; selectedSlot=null;
