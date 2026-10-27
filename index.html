@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -22,9 +23,9 @@ h1{font-size:clamp(34px,5.3vw,62px);line-height:1.35;max-width:900px;margin:23px
 footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px}.footerrow{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .modal{position:fixed;inset:0;z-index:50;background:#000a;display:grid;place-items:center;padding:18px}.modal-card{width:min(620px,100%);max-height:85vh;overflow:auto;border:1px solid var(--line);border-radius:22px;padding:28px;background:#0d291f;box-shadow:0 25px 90px #0008}.modal-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.modal-top h2{margin:0;color:var(--gold2)}.close{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:transparent;color:white;font-size:22px}.modal-card p{color:#d3ddd5}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#f4d58e;color:#17251d;padding:12px 18px;border-radius:12px;z-index:80;box-shadow:0 10px 30px #0005;max-width:90%;text-align:center}
 @media(max-width:760px){.nav{flex-wrap:wrap}.navright{gap:12px;flex-wrap:wrap}.nav .cta-nav{display:none}.hero{padding:58px 0 48px}.grid,.steps{grid-template-columns:1fr}.calendar-layout{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.section{padding:52px 0}.booking-wrap{padding:20px}.nav a,.nav button.navlink{font-size:13px}.brand{font-size:24px}.video-stage{aspect-ratio:4/3}.progress-steps{gap:6px}.pillstep{font-size:11px}}
-
 .booking-hidden{display:block!important}
-.booking-revealed{display:block!important;background:#f8f7f2!important;color:#17251d!important}
+.booking-revealed{display:block;background:#f8f7f2!important;color:#17251d!important}
+.booking-revealed.hidden{display:none!important}
 .booking-revealed .section-head p{color:#4f5e55}
 .booking-revealed .eyebrow{color:#8a692b;border-color:#d8b56d}
 .booking-revealed .booking-wrap{background:#fff;border-color:#e5d9bd;color:#17251d}
@@ -40,9 +41,33 @@ footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 .pain-option input{accent-color:#b18b45;width:17px;height:17px;min-height:0!important;flex:0 0 auto}
 .video-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .video-stage.playing .play{opacity:0;pointer-events:none}
+.video-stage.playing:hover .play{opacity:1;pointer-events:auto}
+@media(max-width:760px){.pain-options{grid-template-columns:1fr}}
 </style>
-
+</head>
+<body>
+<header>
+ <div class="container nav">
+  <a class="brand" href="#home" aria-label="DarFlow home">Dar<span>Flow</span></a>
+  <div class="navright">
+   <a href="#features" data-i18n="services">خدماتنا</a>
+   <button class="navlink" id="aboutOpen" data-i18n="about">من نحن؟</button>
+   <select class="lang" id="language" aria-label="Language">
+    <option value="ar">العربية</option><option value="fr">Français</option><option value="en">English</option>
+   </select>
   </div>
+ </div>
+</header>
+<main id="home">
+ <section class="hero">
+  <div class="container">
+   <span class="eyebrow" data-i18n="eyebrow">هندسة الأتمتة للوكالات العقارية المغربية</span>
+   <h1 data-i18n="heroTitle">حوّل كل طلب زبون إلى <em>فرصة بيع حقيقية</em> — حتى عندما تكون مشغولاً</h1>
+   <p class="lead" data-i18n="heroLead">نبني لك نظاماً ذكياً يرد على العملاء 24/24، يجمع معلوماتهم، يفلترهم وينقّطهم حسب الجدية والميزانية، ويساعد فريقك يركز على العملاء الأكثر استعداداً للشراء.</p>
+   <div class="hero-actions"><a class="btn" href="#demo" data-i18n="heroBtn">شاهد العرض التوضيحي ←</a><a class="btn outline" href="#demo" data-i18n="watchBtn">شاهد العرض التوضيحي</a></div>
+   <div class="trust"><span data-i18n="trust1">رد آلي 24/24</span><span data-i18n="trust2">فلترة وتنقيط العملاء</span><span data-i18n="trust3">مصمم للوكالات المغربية</span></div>
+
+</div>
  </section>
 
  <section class="section" id="demo">
@@ -52,7 +77,7 @@ footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     <div class="video-title"><h3 data-i18n="videoHeading">شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة</h3></div>
     <div class="video-stage" id="videoStage">
      <iframe
-      src="https://www.youtube.com/embed/fGvor8qAUEU?playsinline=1&rel=0&enablejsapi=1"
+      src="https://www.youtube.com/embed/fGvor8qAUEU?autoplay=0&playsinline=1&rel=0&enablejsapi=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&modestbranding=1"
       title="DarFlow - العرض التوضيحي"
       loading="eager"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -167,13 +192,13 @@ heroTitle:'حوّل كل استفسار إلى <em>فرصة بيع حقيقية<
 heroLead:"نبني لك نظاماً ذكياً يستجيب للعملاء على مدار الساعة، ويجمع معلوماتهم ويفرزهم ويصنّفهم حسب الجدية والميزانية، ليساعد فريقك على التركيز على العملاء الأكثر استعداداً للشراء.",
 heroBtn:"شاهد العرض التوضيحي ←",watchBtn:"شاهد العرض التوضيحي",trust1:"رد آلي 24/24",trust2:"فلترة وتنقيط العملاء",trust3:"مصمم للوكالات المغربية",
 demoEyebrow:"شاهد النظام أثناء العمل",demoTitle:'تخيّل وكالة عقارية تعمل بذكاء… <span class="gold">حتى دون تدخل مستمر منك</span>',demoLead:"شاهد كيف تتحول استفسارات العملاء إلى مسار منظم، من أول تواصل حتى موعد المعاينة.",
-
 videoHeading:"شاهد كيف يتحول طلب العميل إلى فرصة بيع منظمة",videoSub:"",videoPlaceholder:"اضغط للتشغيل وشاهد العرض حتى النهاية لفتح نموذج الاستشارة",videoNote:"",
+
 featuresEyebrow:"نظام متكامل",featuresTitle:"كل خطوة محسوبة ليحقق فريقك مبيعات أكثر",featuresLead:"",
 f1t:"استجابة فورية على مدار الساعة",f1p:"يتلقى العميل رداً سريعاً حتى خارج أوقات العمل، دون انتظار رد الفريق.",f2t:"فرز العملاء وتصنيفهم حسب الجدية",f2p:"جمع المعلومات المهمة وتصنيف العملاء وفق الميزانية ونوع العقار والاحتياجات ومدى الاستعداد.",f3t:"تنظيم الزيارات والمعاينات",f3p:"تنسيق المواعيد وتنظيم الزيارات بصورة أكثر احترافية.",f4t:"إدارة المخزون العقاري والملاك",f4p:"تنظيم العقارات المتاحة ومعلومات الملاك وربطها باحتياجات العملاء.",f5t:"لوحة تحكم ووضوح كامل",f5p:"عرض منظم للمعلومات وحالة الطلبات والمواعيد لمتابعة سير العمل واتخاذ قرارات أوضح.",
 howEyebrow:"منهجية العمل",howTitle:"حل مصمم وفق احتياجات وكالتك",step1:"المرحلة الأولى",step1t:"فهم طريقة العمل",step1p:"نحدد مصادر الطلبات وقنوات التواصل وأبرز التحديات في سير العمل الحالي.",step2:"المرحلة الثانية",step2t:"نبني النظام المناسب",step2p:"نصمم النظام وفق احتياجات الوكالة والفريق.",step3:"المرحلة الثالثة",step3t:"متابعة النظام",step3p:"نتابع أداء النظام ونحسّن سير العمل بما يتناسب مع احتياجات وكالتك.",
 bookingEyebrow:"جلسة استشارية مجانية",bookingTitle:"اكتشف كيف يمكن للنظام تطوير أداء وكالتك",bookingLead:"أجب عن الأسئلة الأساسية، ثم اختر اليوم والوقت المناسبين لك.",
-stepBasic:"معلومات الوكالة",stepCalendar:"اختيار الموعد",formTitle:"أخبرنا عن وكالتك",formSub:"تساعدنا هذه المعلومات على إعداد استشارة مناسبة لاحتياجاتك.",nameLabel:"الاسم الكامل *",agencyLabel:"اسم الوكالة *",cityLabel:"المدينة *",volumeLabel:"عدد طلبات العملاء شهرياً *",volumeHint:"اختر الفئة الأقرب إلى حجم الطلبات لديك.",phoneLabel:"رقم واتساب المغربي *",emailLabel:"البريد الإلكتروني (اختياري)",painLabel:"ما أبرز التحديات التي تواجهك في استقبال العملاء ومتابعتهم؟ *",requiredNote:"* حقول إلزامية",nextBtn:"التالي: اختيار موعد الاستشارة ←",
+stepBasic:"معلومات الوكالة",stepCalendar:"اختيار الموعد",formTitle:"أخبرنا عن وكالتك",formSub:"تساعدنا هذه المعلومات على إعداد استشارة مناسبة لاحتياجاتك.",nameLabel:"الاسم الكامل *",agencyLabel:"اسم الوكالة *",cityLabel:"المدينة *",volumeLabel:"عدد طلبات العملاء يومياً *",volumeHint:"اختر الفئة الأقرب إلى حجم الطلبات لديك.",phoneLabel:"رقم واتساب المغربي *",emailLabel:"البريد الإلكتروني (اختياري)",painLabel:"ما أبرز التحديات التي تواجهك في استقبال العملاء ومتابعتهم؟ *",requiredNote:"* حقول إلزامية",nextBtn:"التالي: اختيار موعد الاستشارة ←",
 calendarTitle:"اختر الموعد المناسب لك",calendarSub:"اختر يوماً متاحاً، ثم حدد الوقت المناسب.",timesTitle:"الأوقات المقترحة",chooseDay:"يرجى اختيار يوم من التقويم أولاً.",availabilityNote:"الأوقات المعروضة تجريبية. يجب ربط التقويم بخدمة حجز لتأكيد التوفر الفعلي.",backBtn:"→ رجوع للمعلومات",confirmBtn:"أكد موعد الاستشارة المجانية",
 aboutP1:"DarFlow وكالة متخصصة في هندسة الأنظمة الذكية، موجهة خصيصاً للوكالات العقارية في المغرب. نهدف إلى تطوير تجربة العملاء ومساعدة الوكالات على تحويل الاستفسارات إلى فرص بيع ومعاينات فعلية.",aboutP2:"نصمم حلولاً ذكية وفق طريقة عمل كل وكالة، بدءاً من الرد الأولي وجمع المعلومات، وصولاً إلى فرز العملاء وتصنيفهم حسب الجدية وتنظيم المتابعة والمواعيد. والهدف هو تقليل المهام المتكررة وتحسين سرعة الاستجابة ومنح الفريق وقتاً أكبر للتركيز على العملاء المناسبين.",aboutP3:"لا نقدم أداة جاهزة فحسب؛ بل نبدأ بفهم احتياجاتك، ثم نهيئ نظاماً يتوافق مع أهدافك وطريقة عملك، مع إمكانية تطويره وتحسينه باستمرار.",aboutCta:"ناقش مشروع وكالتك معنا",rights:"جميع الحقوق محفوظة.",footerLine:"هندسة الأتمتة للوكالات العقارية بالمغرب",
 cityPlaceholder:"اختر المدينة",volumePlaceholder:"اختر العدد",phoneError:"يرجى إدخال رقم واتساب مغربي صحيح.",fixFields:"يرجى استكمال الحقول الإلزامية والتحقق من صحتها.",chooseSlot:"يرجى اختيار اليوم والوقت المناسبين.",demoAlert:"هذا نموذج لمكان الفيديو. أضف رابط الفيديو الحقيقي في الكود.",submitted:"تم التحقق من المعلومات محلياً. لربط الحجز فعلياً، أضف خدمة إرسال أو تقويم الحجز."
@@ -202,145 +227,257 @@ heroBtn:"Discover how we can grow your agency ←",watchBtn:"Watch the demo",tru
 demoEyebrow:"See the system in action",demoTitle:'Imagine a smarter agency… <span class="gold">without constant manual work</span>',demoLead:"See how scattered messages can become a clear journey from first contact to a viewing appointment.",
 videoHeading:"From a random message to a qualified lead and a booked viewing — in minutes",videoSub:"A quick look at the DarFlow experience",videoPlaceholder:"Video placeholder — add your actual video URL here",videoNote:"Reserved for your video. Connect the play button to your video file or hosting link.",
 featuresEyebrow:"An integrated system",featuresTitle:"Every step helps your team sell smarter",featuresLead:"Automation is more than an instant reply: it structures lead qualification and follow-up.",
-f1t:"Instant 24/7 responses",f1p:"Prospects receive a quick response even outside business hours.",f2t:"Lead filtering and seriousness scoring",f2p:"Classify prospects by budget, property type, needs and readiness.",f3t:"Organized appointments and follow-up",f3p:"Centralize information and simplify viewing appointments and follow-up.",
-f4t:"Property and owner management",f4p:"Organize available properties and owner details around client needs.",f5t:"A clear management dashboard",f5p:"Track inquiries, appointments and workflow in one organized view.",
-howEyebrow:"How we work",howTitle:"A solution designed around your agency",step1:"STEP 01",step1t:"Understand your workflow",step1p:"We identify inquiry sources, communication channels and current bottlenecks.",step2:"STEP 02",step2t:"Build the right system",step2p:"We adapt automation to your agency and team.",step3:"STEP 03",step3t:"Monitor and improve",step3p:"We track lead quality, response speed and appointments.",
-bookingEyebrow:"Free strategy session",bookingTitle:"Discover how automation can improve your agency",bookingLead:"Answer a few questions, then choose a suitable date and time.",
-stepBasic:"Agency details",stepCalendar:"Choose a time",formTitle:"Tell us about your agency",formSub:"This helps us prepare a consultation around your needs.",nameLabel:"Full name *",agencyLabel:"Agency name *",cityLabel:"City *",volumeLabel:"Customer inquiries per day *",volumeHint:"Choose the closest range.",phoneLabel:"Moroccan WhatsApp number *",emailLabel:"Email (optional)",painLabel:"What is your biggest challenge in managing leads? *",requiredNote:"* Required fields",nextBtn:"Next: choose a consultation time →",
-calendarTitle:"Choose a suitable time",calendarSub:"Select an available date, then choose a time.",timesTitle:"Suggested times",chooseDay:"Please select a date first.",availabilityNote:"Example slots are shown. Connect a booking service to confirm real availability.",backBtn:"← Back to details",confirmBtn:"Confirm free consultation",
-aboutP1:"DarFlow specializes in automation engineering for Moroccan real estate agencies. Our goal is to improve customer experience and turn inquiries into real sales opportunities and property viewings.",aboutP2:"We build solutions around each agency’s workflow, from first response and data collection to lead qualification, scoring, follow-up and appointment scheduling. The goal is to reduce repetitive work and help teams focus on the right prospects.",aboutP3:"We do more than provide a ready-made tool: we learn your needs, then build a system aligned with your goals that can be improved over time.",aboutCta:"Discuss your agency project",rights:"All rights reserved.",footerLine:"Automation engineering for Moroccan real estate agencies",
-cityPlaceholder:"Choose a city",volumePlaceholder:"Choose a range",phoneError:"Please enter a valid Moroccan WhatsApp number",fixFields:"Please complete all required fields correctly.",chooseSlot:"Please choose a date and time.",demoAlert:"This is a video placeholder. Add your actual video URL in the code.",submitted:"Your details passed local validation. Connect a submission service or booking calendar to activate reservations."
-}};
+f1t:"Instant 24/7 responses",f1p:"Prospects receive a quick response even outside business hours.",f2t:"Lead filtering and seriousness scoring",f2p:"Classify prospects by budget, property type, needs and readiness.",f3t:"Organized appointments and follow-up",f3p:"Centralize customer information and simplify viewing appointments and follow-up.",
+howEyebrow:"How we work",howTitle:"A solution tailored to your agency",step1:"STEP 01",step1t:"Understand your workflow",step1p:"We identify lead sources, communication channels and bottlenecks.",step2:"STEP 02",step2t:"Build the right system",step2p:"We tailor automation to your agency and team's needs—not a one-size-fits-all template.",step3:"STEP 03",step3t:"Measure and improve",step3p:"We track lead quality, response speed and appointments to improve performance over time.",
+bookingEyebrow:"Free strategy session",bookingTitle:"Let’s find where automation can help your agency grow",bookingLead:"Answer a few essential questions, then choose a date and time.",
+stepBasic:"Agency details",stepCalendar:"Choose a time",formTitle:"Tell us about your agency",formSub:"These details help us prepare a useful consultation.",nameLabel:"Full name *",agencyLabel:"Agency name *",cityLabel:"City *",volumeLabel:"Customer inquiries per day *",volumeHint:"Choose the closest range.",phoneLabel:"Moroccan WhatsApp number *",emailLabel:"Email (optional)",painLabel:"What is your biggest challenge with incoming leads? *",requiredNote:"* Required fields",nextBtn:"Next: choose a consultation time →",
+calendarTitle:"Choose a suitable time",calendarSub:"Select an available day, then choose a time.",timesTitle:"Suggested times",chooseDay:"Choose a date first.",availabilityNote:"These are sample time slots. Connect a booking service to confirm real availability.",backBtn:"← Back to details",confirmBtn:"Confirm my free consultation",
 
-const cities = ["الدار البيضاء","الرباط","مراكش","طنجة","فاس","أكادير","مكناس","وجدة","القنيطرة","تطوان","تمارة","المحمدية","الجديدة","آسفي","بني ملال","الناظور","العيون","الداخلة","خريبكة","سطات","تازة","الصويرة","ورزازات","الحسيمة","شفشاون","أخرى"];
-const cityNames = {
-fr:["Casablanca","Rabat","Marrakech","Tanger","Fès","Agadir","Meknès","Oujda","Kénitra","Tétouan","Témara","Mohammedia","El Jadida","Safi","Béni Mellal","Nador","Laâyoune","Dakhla","Khouribga","Settat","Taza","Essaouira","Ouarzazate","Al Hoceïma","Chefchaouen","Autre"],
-en:["Casablanca","Rabat","Marrakesh","Tangier","Fez","Agadir","Meknes","Oujda","Kenitra","Tetouan","Temara","Mohammedia","El Jadida","Safi","Beni Mellal","Nador","Laayoune","Dakhla","Khouribga","Settat","Taza","Essaouira","Ouarzazate","Al Hoceima","Chefchaouen","Other"]
+aboutP1:"DarFlow est spécialisée dans l’automatisation des agences immobilières au Maroc.",aboutP2:"Nous adaptons les systèmes aux besoins de chaque agence.",aboutP3:"Nous construisons des solutions évolutives adaptées à vos objectifs.",aboutCta:"Parlons de votre projet",rights:"Tous droits réservés.",footerLine:"Automatisation pour les agences immobilières au Maroc",
+cityPlaceholder:"Choose a city",volumePlaceholder:"Choose a range",phoneError:"Enter a valid Moroccan WhatsApp number.",fixFields:"Please complete all required fields correctly.",chooseSlot:"Please choose a date and time.",demoAlert:"Add your actual video URL in the code.",submitted:"Information validated locally. Connect a booking service to activate reservations."
+}
 };
-let lang="ar";
+
+const cities = {
+ar:["الدار البيضاء","الرباط","سلا","طنجة","مراكش","فاس","مكناس","القنيطرة","أكادير","وجدة","تطوان","المحمدية","الجديدة","بني ملال","آسفي","أخرى"],
+fr:["Casablanca","Rabat","Salé","Tanger","Marrakech","Fès","Meknès","Kénitra","Agadir","Oujda","Tétouan","Mohammedia","El Jadida","Béni Mellal","Safi","Autre"],
+en:["Casablanca","Rabat","Salé","Tangier","Marrakech","Fez","Meknes","Kenitra","Agadir","Oujda","Tetouan","Mohammedia","El Jadida","Beni Mellal","Safi","Other"]
+};
+
+let currentLang="ar";
+let selectedDate="";
+let selectedSlot="";
+let monthCursor=new Date();
+let availableSlots=[];
 const $=id=>document.getElementById(id);
-function setLanguage(next){
- lang=next;document.documentElement.lang=next;document.documentElement.dir=next==="ar"?"rtl":"ltr";
- document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(translations[next][k]!==undefined)el.innerHTML=translations[next][k]});
- const city=$("city"), old=city.value;city.innerHTML=`<option value="">${translations[next].cityPlaceholder}</option>`;
- cities.forEach((c,i)=>{const o=document.createElement("option");o.value=c;o.textContent=next==="ar"?c:(i<25?cityNames[next][i]:cityNames[next][25]);city.appendChild(o)});city.value=old;
- $("volume").options[0].text=translations[next].volumePlaceholder;
+
+function showToast(message){
+ const el=$("toast");
+ if(!el)return;
+ el.textContent=message;
+ el.classList.remove("hidden");
+ setTimeout(()=>el.classList.add("hidden"),4500);
+}
+function setLanguage(lang){
+ currentLang=translations[lang]?lang:"ar";
+ document.documentElement.lang=currentLang;
+ document.documentElement.dir=currentLang==="ar"?"rtl":"ltr";
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+  const key=el.dataset.i18n;
+  const value=translations[currentLang][key];
+  if(value!==undefined)el.innerHTML=value;
+ });
+ const city=$("city");
+ if(city){
+  const old=city.value;
+  city.innerHTML='<option value="">'+translations[currentLang].cityPlaceholder+'</option>';
+  (cities[currentLang]||cities.ar).forEach(name=>{
+   const opt=document.createElement("option");
+   opt.value=name;opt.textContent=name;city.appendChild(opt);
+  });
+  if(old)city.value=old;
+ }
  renderCalendar();
 }
-$("language").addEventListener("change",e=>setLanguage(e.target.value));setLanguage("ar");
+$("language")?.addEventListener("change",e=>setLanguage(e.target.value));
 
-const modal=$("aboutModal");
-$("aboutOpen").onclick=()=>{modal.classList.remove("hidden");$("aboutClose").focus()};
-$("aboutClose").onclick=()=>modal.classList.add("hidden");
-modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.add("hidden")});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.add("hidden")});
-$("modalBook").addEventListener("click",()=>modal.classList.add("hidden"));
+$("aboutOpen")?.addEventListener("click",()=>$("aboutModal").classList.remove("hidden"));
+$("aboutClose")?.addEventListener("click",()=>$("aboutModal").classList.add("hidden"));
+$("aboutModal")?.addEventListener("click",e=>{
+ if(e.target===$("aboutModal"))$("aboutModal").classList.add("hidden");
+});
+$("modalBook")?.addEventListener("click",()=>{
+ $("aboutModal").classList.add("hidden");
+ $("booking").classList.remove("hidden");
+ $("booking").setAttribute("aria-hidden","false");
+});
 
-function normalizeMoroccanPhone(value){
- const digits=value.trim().replace(/[\s().-]/g,"");
- if(/^0[67]\d{8}$/.test(digits))return true;
- if(/^\+212[67]\d{8}$/.test(digits))return true;
- if(/^212[67]\d{8}$/.test(digits))return true;
- return false;
+function validMoroccanPhone(value){
+ const digits=value.replace(/[^\d]/g,"");
+ return /^(0[5-7]\d{8}|212[5-7]\d{8})$/.test(digits);
 }
-function phoneIsValid(){const ok=normalizeMoroccanPhone($("phone").value);$("phoneError").textContent=ok?"":translations[lang].phoneError;$("phone").classList.toggle("invalid",!ok);return ok}
-$("phone").addEventListener("input",()=>{if($("phone").value)phoneIsValid();else{$("phoneError").textContent="";$("phone").classList.remove("invalid")}});
-function requiredFieldsValid(){
+function validateStep1(){
  let valid=true;
- ["fullName","agency","city","volume"].forEach(id=>{const el=$(id);const ok=!!el.value.trim();el.classList.toggle("invalid",!ok);if(!ok)valid=false});
- const selectedPains=[...document.querySelectorAll('input[name="pain"]:checked')];
- $("painError").textContent=selectedPains.length?"":"يرجى اختيار مشكلة واحدة على الأقل.";
- if(!selectedPains.length)valid=false;
- if(!phoneIsValid())valid=false;
- const email=$("email");if(email.value&&!email.checkValidity()){email.classList.add("invalid");valid=false}else email.classList.remove("invalid");
- if(!valid)showToast(translations[lang].fixFields);
+ const required=["fullName","agency","city","volume","phone"];
+ required.forEach(id=>{
+  const el=$(id);
+  const ok=!!el.value.trim()&&(id!=="phone"||validMoroccanPhone(el.value));
+  el.classList.toggle("invalid",!ok);
+  if(!ok)valid=false;
+ });
+ $("phoneError").textContent=validMoroccanPhone($("phone").value)?"":translations[currentLang].phoneError;
+ const pains=[...document.querySelectorAll('input[name="pain"]:checked')];
+ $("painError").textContent=pains.length?"":"يرجى اختيار مشكلة واحدة على الأقل.";
+ if(!pains.length)valid=false;
+ if(!valid)showToast(translations[currentLang].fixFields);
  return valid;
 }
-$("nextStep").onclick = () => {
- if (!requiredFieldsValid()) return;
+$("nextStep")?.addEventListener("click",()=>{
+ if(!validateStep1())return;
  $("formStep1").classList.add("hidden");
  $("formStep2").classList.remove("hidden");
- $("stepLabel1").classList.remove("active"); $("stepLabel1").classList.add("done");
+ $("stepLabel1").classList.add("done");
  $("stepLabel2").classList.add("active");
- $("formStep2").scrollIntoView({behavior:"smooth", block:"start"});
- if (!selectedDate) selectedDate = dateKey(new Date()); renderCalendar(); loadSlots();
-};
-$("backStep").onclick=()=>{$("formStep2").classList.add("hidden");$("formStep1").classList.remove("hidden");$("stepLabel2").classList.remove("active");$("stepLabel1").classList.add("active");$("formStep1").scrollIntoView({behavior:"smooth",block:"start"})};
+ renderCalendar();
+});
+$("backStep")?.addEventListener("click",()=>{
+ $("formStep2").classList.add("hidden");
+ $("formStep1").classList.remove("hidden");
+ $("stepLabel2").classList.remove("active");
+});
+$("phone")?.addEventListener("input",e=>e.target.classList.remove("invalid"));
 
-const now=new Date();let viewYear=now.getFullYear(),viewMonth=now.getMonth(),selectedDate=null,selectedSlot=null,slotsList=[];
-function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
-async function loadSlots(){
- const box=$("slots"); box.innerHTML=""; selectedSlot=null;
- const loading=document.createElement("p"); loading.className="hint"; loading.textContent="كنتحققو من الأوقات المتاحة…"; box.appendChild(loading);
- try { slotsList=await requestSlots(selectedDate); renderSlots(); }
- catch(err){box.innerHTML="";const msg=document.createElement("p");msg.className="hint";msg.textContent=err.message;box.appendChild(msg);}
+const weekdayNames={
+ ar:["ح","ن","ث","ر","خ","ج","س"],
+ fr:["L","M","M","J","V","S","D"],
+ en:["M","T","W","T","F","S","S"]
+};
+function localDateString(date){
+ const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,"0"),d=String(date.getDate()).padStart(2,"0");
+ return `${y}-${m}-${d}`;
 }
 function renderCalendar(){
- const locale=lang==="ar"?"ar-MA":lang==="fr"?"fr-FR":"en-GB";
- $("monthLabel").textContent=new Intl.DateTimeFormat(locale,{month:"long",year:"numeric"}).format(new Date(viewYear,viewMonth,1));
- $("weekdays").innerHTML="";
- let dayNames=lang==="ar"?["الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت","الأحد"]:lang==="fr"?["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"]:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
- dayNames.forEach(d=>{const el=document.createElement("span");el.textContent=d;$("weekdays").appendChild(el)});
- const days=$("days");days.innerHTML="";const first=new Date(viewYear,viewMonth,1);let offset=(first.getDay()+6)%7;const count=new Date(viewYear,viewMonth+1,0).getDate();
+ const weekdays=$("weekdays"),days=$("days"),label=$("monthLabel");
+ if(!weekdays||!days||!label)return;
+ weekdays.innerHTML="";
+ (weekdayNames[currentLang]||weekdayNames.ar).forEach(x=>{
+  const el=document.createElement("span");el.textContent=x;weekdays.appendChild(el);
+ });
+ const year=monthCursor.getFullYear(),month=monthCursor.getMonth();
+ label.textContent=monthCursor.toLocaleDateString(currentLang==="ar"?"ar-MA":currentLang==="fr"?"fr-FR":"en-US",{month:"long",year:"numeric"});
+ days.innerHTML="";
+ const first=new Date(year,month,1);
+ const offset=(first.getDay()+6)%7;
  for(let i=0;i<offset;i++)days.appendChild(document.createElement("span"));
- for(let d=1;d<=count;d++){const date=new Date(viewYear,viewMonth,d);const btn=document.createElement("button");btn.type="button";btn.className="day";btn.textContent=d;const key=dateKey(date);const today=new Date();today.setHours(0,0,0,0);btn.disabled=date<today;if(selectedDate===key)btn.classList.add("selected");btn.onclick=()=>{selectedDate=key;renderCalendar();loadSlots();};days.appendChild(btn)}
- if(!selectedDate) selectedDate=dateKey(new Date());
- $("selectedDateText").textContent=new Intl.DateTimeFormat(locale,{weekday:"long",day:"numeric",month:"long"}).format(new Date(selectedDate+"T12:00:00"));
+ const total=new Date(year,month+1,0).getDate();
+ const today=localDateString(new Date());
+ for(let n=1;n<=total;n++){
+  const date=new Date(year,month,n),key=localDateString(date);
+  const button=document.createElement("button");
+  button.type="button";button.className="day";button.textContent=n;
+  button.disabled=key<today;
+  if(key===selectedDate)button.classList.add("selected");
+  button.addEventListener("click",()=>selectDate(key));
+  days.appendChild(button);
+ }
 }
-function renderSlots(){
- const box=$("slots");box.innerHTML="";
- const locale=lang==="ar"?"ar-MA":lang==="fr"?"fr-FR":"en-GB";
- $("selectedDateText").textContent=selectedDate?new Intl.DateTimeFormat(locale,{weekday:"long",day:"numeric",month:"long"}).format(new Date(selectedDate+"T12:00:00")):translations[lang].chooseDay;
- if(!slotsList.length){const p=document.createElement("p");p.className="hint";p.textContent="ما كاين حتى موعد متاح فهاد النهار. اختار نهار آخر.";box.appendChild(p);return;}
- slotsList.forEach(item=>{const time=typeof item==="string"?item:item.time;if(item.available===false)return;const b=document.createElement("button");b.type="button";b.className="slot";b.textContent=time;if(selectedSlot===time)b.classList.add("selected");b.onclick=()=>{selectedSlot=time;renderSlots()};box.appendChild(b)});
-}
-$("prevMonth").onclick=()=>{viewMonth--;if(viewMonth<0){viewMonth=11;viewYear--}renderCalendar()};
-$("nextMonthBtn").onclick=()=>{viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++}renderCalendar()};
-function showToast(message){const t=$("toast");t.textContent=message;t.classList.remove("hidden");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.add("hidden"),5000)}
-$("bookingForm").addEventListener("submit",async e=>{
- e.preventDefault();if(!requiredFieldsValid()){ $("formStep2").classList.add("hidden");$("formStep1").classList.remove("hidden");return;}
- if(!selectedDate||!selectedSlot){showToast("اختار التاريخ والساعة المتاحة أولاً.");return;}
- const button=$("confirmBooking");button.disabled=true;button.textContent="جاري تأكيد الموعد…";
- const payload={name:$("fullName").value.trim(),phone:$("phone").value.trim(),agency:$("agency").value.trim(),city:$("city").value,team:$("volume").value,demand:"Consultation gratuite DARFLOW",pains:[...document.querySelectorAll('input[name="pain"]:checked')].map(el=>el.value).join("; "),email:$("email").value.trim(),date:selectedDate,time:selectedSlot,timezone:"Africa/Casablanca"};
- try { await submitBooking(payload); showToast("تم إرسال طلب الحجز. إلا ما بانش التأكيد، راجع Google Calendar وGoogle Sheets قبل إعادة المحاولة."); }
- catch(err){showToast("وقع مشكل فالإرسال. عاود المحاولة من فضلك.");}
- finally{button.disabled=false;button.textContent="تأكيد الموعد";}
+$("prevMonth")?.addEventListener("click",()=>{
+ monthCursor=new Date(monthCursor.getFullYear(),monthCursor.getMonth()-1,1);
+ renderCalendar();
 });
-renderCalendar();
+$("nextMonthBtn")?.addEventListener("click",()=>{
+ monthCursor=new Date(monthCursor.getFullYear(),monthCursor.getMonth()+1,1);
+ renderCalendar();
+});
 
+async function selectDate(date){
+ selectedDate=date;selectedSlot="";availableSlots=[];
+ renderCalendar();
+ $("selectedDateText").textContent=date;
+ $("slots").innerHTML="";
+ const loading=document.createElement("p");
+ loading.className="hint";loading.textContent="جاري تحميل الأوقات...";
+ $("slots").appendChild(loading);
+ try{
+  availableSlots=await requestSlots(date);
+  $("slots").innerHTML="";
+  if(!availableSlots.length){
+   $("slots").textContent="لا توجد أوقات متاحة لهذا اليوم.";
+   return;
+  }
+  availableSlots.forEach(slot=>{
+   const time=typeof slot==="string"?slot:slot.time;
+   const button=document.createElement("button");
+   button.type="button";button.className="slot";button.textContent=time;
+   button.addEventListener("click",()=>{
+    selectedSlot=time;
+    document.querySelectorAll(".slot").forEach(x=>x.classList.remove("selected"));
+    button.classList.add("selected");
+   });
+   $("slots").appendChild(button);
+  });
+ }catch(error){
+  $("slots").innerHTML="";
+  const msg=document.createElement("p");
+  msg.className="hint";
+  msg.textContent=error.message+" — تأكد من إعداد Google Apps Script.";
+  $("slots").appendChild(msg);
+ }
+}
 
-// Show the booking section only after the YouTube video has fully ended.
-(function(){
-  const booking = document.getElementById("booking");
-  const frame = document.querySelector("#videoStage iframe");
-  if (!booking || !frame) return;
-  booking.classList.add("hidden");
-  booking.setAttribute("aria-hidden", "true");
-  let player;
-  function onPlayerStateChange(event) {
-    // YT.PlayerState.ENDED === 0
-    if (event.data === 0) {
-      booking.classList.remove("hidden");
-      booking.setAttribute("aria-hidden", "false");
-      booking.scrollIntoView({behavior: "smooth", block: "start"});
-    }
+$("bookingForm")?.addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!validateStep1()) {
+  $("formStep2").classList.add("hidden");
+  $("formStep1").classList.remove("hidden");
+  return;
+ }
+ if(!selectedDate||!selectedSlot){
+  showToast(translations[currentLang].chooseSlot);
+  return;
+ }
+ const submit=$("confirmBooking");
+ submit.disabled=true;
+ submit.textContent="جاري الإرسال...";
+ const payload={
+  fullName:$("fullName").value.trim(),
+  agency:$("agency").value.trim(),
+  city:$("city").value,
+  volume:$("volume").value,
+  phone:$("phone").value.trim(),
+  email:$("email").value.trim(),
+  pains:[...document.querySelectorAll('input[name="pain"]:checked')].map(x=>x.value),
+  date:selectedDate,
+  time:selectedSlot,
+  language:currentLang,
+  submittedAt:new Date().toISOString()
+ };
+ try{
+  await submitBooking(payload);
+  showToast("تم إرسال طلبك. سنتواصل معك لتأكيد الموعد.");
+  $("bookingForm").reset();
+  selectedDate="";selectedSlot="";availableSlots=[];
+  $("formStep2").classList.add("hidden");
+  $("formStep1").classList.remove("hidden");
+  $("stepLabel1").classList.remove("done");
+  $("stepLabel2").classList.remove("active");
+ }catch(error){
+  showToast("وقع مشكل أثناء الإرسال. حاول مرة أخرى أو تواصل معنا.");
+ }finally{
+  submit.disabled=false;
+  submit.textContent=translations[currentLang].confirmBtn||"تأكيد الموعد";
+ }
+});
+
+/* Video: reveal the booking form only when the YouTube video reports that it ended. */
+let ytPlayer;
+let videoEnded=false;
+function revealBooking(){
+ if(videoEnded)return;
+ videoEnded=true;
+ const booking=$("booking");
+ booking.classList.remove("hidden");
+ booking.setAttribute("aria-hidden","false");
+ booking.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function onYouTubeIframeAPIReady(){
+ const iframe=document.querySelector("#videoStage iframe");
+ if(!iframe||!window.YT||!YT.Player)return;
+ ytPlayer=new YT.Player(iframe,{
+  events:{
+   onStateChange:event=>{
+    if(event.data===YT.PlayerState.ENDED)revealBooking();
+   }
   }
-  function initDarFlowPlayer() {
-    if (!window.YT || !window.YT.Player || player) return;
-    player = new YT.Player(frame, {
-      events: { onStateChange: onPlayerStateChange }
-    });
-  }
-  if (window.YT && window.YT.Player) {
-    initDarFlowPlayer();
-  } else {
-    window.onYouTubeIframeAPIReady = initDarFlowPlayer;
-    const api = document.createElement("script");
-    api.src = "https://www.youtube.com/iframe_api";
-    api.async = true;
-    document.head.appendChild(api);
-  }
+ });
+}
+(function loadYouTubeAPI(){
+ if(window.YT&&window.YT.Player){onYouTubeIframeAPIReady();return;}
+ const script=document.createElement("script");
+ script.src="https://www.youtube.com/iframe_api";
+ document.head.appendChild(script);
 })();
+setLanguage("ar");
 </script>
 </body>
 </html>
